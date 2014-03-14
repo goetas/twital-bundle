@@ -20,75 +20,75 @@ class TwitalAsseticLoader implements FormulaLoaderInterface{
     {
         $this->factory = $factory;
     }
-	function load(ResourceInterface $resource){
-		$formula = array();
+    function load(ResourceInterface $resource){
+        $formula = array();
 
-		$nRes = new FileResource($resource);
+        $nRes = new FileResource($resource);
 
-		$str = $nRes->getContent();
+        $str = $nRes->getContent();
 
-		if (!$str){
-			return $formula;
-		}
+        if (!$str){
+            return $formula;
+        }
 
-		$str = preg_replace("/(&[a-z]+;)/i", "",  $str);
+        $str = preg_replace("/(&[a-z]+;)/i", "",  $str);
 
-		$dom = new XMLDom();
-		$dom->loadXMLStrict($str);
+        $dom = new XMLDom();
+        $dom->loadXMLStrict($str);
 
-		foreach ($dom->query("//as:javascripts", array("as"=>"Twital:Assetic")) as $node){
+        foreach ($dom->query("//as:javascripts", array("as"=>"Twital:Assetic")) as $node){
 
-			if($node->hasAttribute("filter")){
-				$filters=explode(",",$node->getAttribute("filter"));
-			}else{
-				$filters = array();
-			}
+            if($node->hasAttribute("filter")){
+                $filters=explode(",",$node->getAttribute("filter"));
+            }else{
+                $filters = array();
+            }
 
-			$inputs = array();
-			foreach ($node->query("xh:script",array("xh"=>"http://www.w3.org/1999/xhtml")) as $script){
-		        $inputs[]=$script->getAttribute("src");
-			}
-			$options = array();
-			if($node->hasAttribute("output")){
-				$options['output']=$node->getAttribute("output");
-			}else{
-				$options['output']="assetic/js/*.js";
-			}
+            $inputs = array();
+            foreach ($node->query("xh:script",array("xh"=>"http://www.w3.org/1999/xhtml")) as $script){
+                $inputs[]=$script->getAttribute("src");
+            }
+            $options = array();
+            if($node->hasAttribute("output")){
+                $options['output']=$node->getAttribute("output");
+            }else{
+                $options['output']="assetic/js/*.js";
+            }
 
-			if(count($inputs)){
-				$formula  += $this->processCall($inputs, $options, $filters);
-			}
-		}
+            if(count($inputs)){
+                $formula  += $this->processCall($inputs, $options, $filters);
+            }
+        }
 
 
-		foreach ($dom->query("//as:stylesheets", array("as"=>"Twital:Assetic")) as $node){
+        foreach ($dom->query("//as:stylesheets", array("as"=>"Twital:Assetic")) as $node){
 
-			$filters = array();
+            $filters = array();
 
-			if($node->hasAttribute("filter")){
-				$filters=explode(",",$node->getAttribute("filter"));
-			}
+            if($node->hasAttribute("filter")){
+                $filters=explode(",",$node->getAttribute("filter"));
+            }
 
-			$inputs = array();
-			foreach ($node->query ( "xh:link", array ("xh" => "http://www.w3.org/1999/xhtml" ) ) as $link){
-				$inputs[]=$link->getAttribute("href");
-			}
+            $inputs = array();
+            foreach ($node->query ( "xh:link", array ("xh" => "http://www.w3.org/1999/xhtml" ) ) as $link){
+                $inputs[]=$link->getAttribute("href");
+            }
 
-			$options = array();
-			if($node->hasAttribute("output")){
-				$options['output']=$node->getAttribute("output");
-			}else{
-				$options['output']="assetic/css/*.css";
-			}
+            $options = array();
+            if($node->hasAttribute("output")){
+                $options['output']=$node->getAttribute("output");
+            }else{
+                $options['output']="assetic/css/*.css";
+            }
 
-			if(count($inputs)){
-				$formula  += $this->processCall($inputs, $options, $filters);
-			}
-		}
+            if(count($inputs)){
+                $formula  += $this->processCall($inputs, $options, $filters);
+            }
+        }
 
         return $formula;
-	}
-	static private function createTemplateReference($bundle, $file)
+    }
+    static private function createTemplateReference($bundle, $file)
     {
         $parts = explode('/', strtr($file, '\\', '/'));
         $elements = explode('.', array_pop($parts));

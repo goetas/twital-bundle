@@ -2,15 +2,15 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-	<parameters>
-		<parameter key="twital.translation.extractor.jms.class">Goetas\TwitalBundle\Translation\Jms\TwitalExtractor</parameter>
-	</parameters>
+    <parameters>
+        <parameter key="twital.translation.extractor.jms.class">Goetas\TwitalBundle\Translation\Jms\TwitalExtractor</parameter>
+    </parameters>
 
-	<services>
-		<service id="twital.translation.extractor.jms" class="%twital.translation.extractor.jms.class%">
-		    <argument type="service" id="twital.translation.extractor" />
+    <services>
+        <service id="twital.translation.extractor.jms" class="%twital.translation.extractor.jms.class%">
+            <argument type="service" id="twital.translation.extractor" />
             <tag name="jms_translation.file_visitor" alias="twital" />
         </service>
 
-	</services>
+    </services>
 </container>

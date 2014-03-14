@@ -32,14 +32,14 @@ class GoetasTwitalExtension extends Extension
         $bundles = $container->getParameter('kernel.bundles');
 
         if (0 && isset($bundles["JMSTranslationBundle"])){
-        	$loader->load('jms-translation-bundle.xml');
+            $loader->load('jms-translation-bundle.xml');
         }
         if (0 && isset($bundles["AsseticBundle"])){
-        	$loader->load('assetic.xml');
-	        $engine = 'twital';
-	    	// bundle resources
-	        foreach ($bundles as $bundle => $bundleClass) {
-	            $rc = new \ReflectionClass($bundleClass);
+            $loader->load('assetic.xml');
+            $engine = 'twital';
+            // bundle resources
+            foreach ($bundles as $bundle => $bundleClass) {
+                $rc = new \ReflectionClass($bundleClass);
                 $container->setDefinition(
                     'assetic.custom_'.$engine.'_directory_resource.'.$bundle,
                     new DirectoryResourceDefinition($bundle, $engine, array(
@@ -47,9 +47,9 @@ class GoetasTwitalExtension extends Extension
                         dirname($rc->getFileName()).'/Resources/views',
                     ))
                 );
-	        }
+            }
 
-	        // kernel resources
+            // kernel resources
             $container->setDefinition(
                 'assetic.custom_'.$engine.'_directory_resource.kernel',
                 new DirectoryResourceDefinition('', $engine, array($container->getParameter('kernel.root_dir').'/Resources/views'))
