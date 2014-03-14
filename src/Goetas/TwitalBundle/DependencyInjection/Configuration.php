@@ -17,13 +17,37 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('twital');
+        $builder = new TreeBuilder();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $builder->root('twital')
+            // filters
+            ->fixXmlConfig('source_adapter')
+            ->children()
+                ->arrayNode('source_adapters')
+                    ->defaultValue(array(
+                    	'twital.source_adapter.xml'=>array('/\.xml\.twital$/'),
+                        'twital.source_adapter.html5'=>array('/\.html\.twital$/'),
+                        'twital.source_adapter.xhtml'=>array('/\.xhtml\.twital$/'),
+                    ))
+                    ->requiresAtLeastOneElement()
+                    ->useAttributeAsKey('name')
+                    ->prototype('variable')
+                        ->treatNullLike(array())
+                        ->validate()
+                            ->ifTrue(function($v) { return !is_array($v); })
+                            ->thenInvalid('The assetic.filters config %s must be either null or an array.')
+                        ->end()
+                    ->end()
+                    ->validate()
+                        ->always(function($v) {
+                            return $v;
+                        })
+                    ->end()
+                ->end()
+            ->end()
 
-        return $treeBuilder;
+        ;
+
+        return $builder;
     }
 }

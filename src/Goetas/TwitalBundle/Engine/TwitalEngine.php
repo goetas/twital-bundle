@@ -2,17 +2,11 @@
 
 namespace Goetas\TwitalBundle\Engine;
 
-use Goetas\TwitalBundle\Helper\TwitalHelper;
 
-use goetas\twital\Compiler;
 
-use Goetas\TwitalBundle\Locale\Translator;
-
-use Goetas\TwitalBundle\TwitalBundle;
 
 use Symfony\Component\DependencyInjection\Container;
 
-use goetas\twital\BasePhpModifier;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables;
@@ -20,9 +14,8 @@ use Symfony\Component\Templating\TemplateNameParserInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use goetas\twital\Twital;
-use goetas\twital\IFinder;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Goetas\Twital\TwitalLoader;
 
 class TwitalEngine extends TwigEngine
 {
@@ -40,5 +33,10 @@ class TwitalEngine extends TwigEngine
         }
         $template = $this->parser->parse($name);
         return 'twital' === $template->get('engine');
+    }
+    public function hookIntoTwig(TwitalLoader $twitalLoader)
+    {
+        $twitalLoader->setLoader($this->environment->getLoader());
+        $this->environment->setLoader($twitalLoader);
     }
 }

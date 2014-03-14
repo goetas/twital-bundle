@@ -2,41 +2,38 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <!-- 
-        <parameter key="twital.translation.extractor.class">Goetas\TwitalBundle\Translation\TwitalExtractor</parameter>
-         -->
-         <parameter key="twital.class">Goetas\Twital\TwitalEnviroment</parameter>
-        <parameter key="twital.loader.filesystem.class">Goetas\Twital\TwitalLoader</parameter>
-        <parameter key="twital.loader.compiler.class">Goetas\Twital\Compiler</parameter>
-        
-        <parameter key="templating.engine.twital.class">Goetas\TwitalBundle\Engine\TwitalEngine</parameter>
-    </parameters>
-    
-    
-    <services>
+	<parameters>
+		<parameter key="twital.class">Goetas\Twital\Twital</parameter>
+		<parameter key="twital.loader.class">Goetas\Twital\TwitalLoader</parameter>
+		<parameter key="templating.engine.twital.class">Goetas\TwitalBundle\Engine\TwitalEngine</parameter>
+		<parameter key="twital.source_adapter.xml.class">Goetas\Twital\SourceAdapter\XMLAdapter</parameter>
+		<parameter key="twital.source_adapter.html5.class">Goetas\Twital\SourceAdapter\HTML5Adapter</parameter>
+		<parameter key="twital.source_adapter.xhtml.class">Goetas\Twital\SourceAdapter\XHTMLAdapter</parameter>
+	</parameters>
 
-        <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
-            <argument type="service" id="twital" />
-            <argument type="service" id="templating.name_parser" />
-            <argument type="service" id="templating.locator" />
+	<services>
+		<service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
+			<argument type="service" id="twig" />
+			<argument type="service" id="templating.name_parser" />
+			<argument type="service" id="templating.locator" />
+			<call method="hookIntoTwig">
+                <argument type="service" id="twital.loader" />
+            </call>
+		</service>
+
+		<service id="twital" class="%twital.class%">
+		</service>
+		
+		<service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%">
         </service>
-        
-        <service id="twital" class="%twital.class%">
-            <argument type="service" id="twig" />
-            <argument type="service" id="twital.compiler" />
+        <service id="twital.source_adapter.html5" class="%twital.source_adapter.html5.class%">
         </service>
-        
-        <service id="twital.compiler" class="%twital.loader.compiler.class%" public="false">
-            <argument type="string">xml</argument>
+        <service id="twital.source_adapter.xhtml" class="%twital.source_adapter.xhtml.class%">
         </service>
-        <!-- 
-        <service id="twital.loader" class="%twital.loader.filesystem.class%" public="false">
-            <argument type="service" id="twig.loader.filesystem" />
-            <argument type="service" id="twital.compiler" />
-            <tag name="twig.loader"/>
-        </service>
-         -->
-        
-    </services>
+                
+		<service id="twital.loader" class="%twital.loader.class%">
+			<argument type="service" id="twital" />
+			<argument type="constant">FALSE</argument>
+		</service>
+	</services>
 </container>

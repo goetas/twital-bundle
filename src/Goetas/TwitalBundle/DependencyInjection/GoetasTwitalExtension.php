@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -28,6 +29,21 @@ class GoetasTwitalExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('twital.xml');
+
+
+        $loaderDefinition = $container->getDefinition("twital.loader");
+        foreach($config["source_adapters"] as $id => $regs){
+        	foreach($regs as $reg){
+        	    $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
+        	}
+        }
+
+        $twitalDefinition = $container->getDefinition("twital");
+        $extensions = $container->findTaggedServiceIds("templating.engine.twital.extension");
+        foreach ($extensions as $extensionDefinition){
+            $twitalDefinition->addMethodCall('addExtension', array($extensionDefinition));
+        }
+
 
         $bundles = $container->getParameter('kernel.bundles');
 
