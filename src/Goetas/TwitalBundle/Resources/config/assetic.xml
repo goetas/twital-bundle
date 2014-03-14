@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<services>
+
+		<service id="twital.assetic.php_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
+			<tag name="assetic.formula_loader" alias="twital" />
+			<argument type="service" id="twital.assetic.formula_loader.real" />
+			<argument type="service" id="assetic.config_cache" />
+			<argument>%kernel.debug%</argument>
+		</service>
+
+		<service id="twital.assetic.formula_loader.real" class="Goetas\TwitalBundle\Assetic\TwitalAsseticLoader">
+			<argument type="service" id="assetic.asset_factory" />
+		</service>
+		<service id="twital.plugins.assetic" class="Goetas\TwitalBundle\Plugins\Assetic" public="false">
+		  <argument type="service" id="service_container" />
+            <tag name="templating.engine.twital.plugin" />
+        </service>
+	</services>
+</container>

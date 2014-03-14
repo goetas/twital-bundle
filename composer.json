@@ -1,0 +1,33 @@
+{
+	"name" : "goetas/twital-bundle",
+	"description" : "Twig templating engine Symfony2 Bundle",
+	"authors" : [{
+			"name" : "Asmir Mustafic",
+			"email" : "goetas@lignano.it"
+		}
+	],
+	"keywords" : [
+		"php",
+		"xml",
+		"templating",
+		"symfony",
+		"twig"
+	],
+	"homepage" : "https://github.com/goetas/twital-bundle",
+	"license" : [
+		"MIT"
+	],
+	"require" : {
+		"php" : ">=5.3.3",
+		"goetas/twital" : "~0.1",
+		"symfony/symfony" : ">=2.1,<3.0",
+	},
+	"autoload" : {
+		"psr-0" : "src/"
+	}
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1-dev"
+        }
+    }	
+}
