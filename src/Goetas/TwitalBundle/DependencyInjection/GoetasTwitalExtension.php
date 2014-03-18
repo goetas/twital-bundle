@@ -44,7 +44,10 @@ class GoetasTwitalExtension extends Extension
             $twitalDefinition->addMethodCall('addExtension', array($extensionDefinition));
         }
 
+        $loader->load('assetic.xml');
 
+
+        /*
         $bundles = $container->getParameter('kernel.bundles');
 
         if (0 && isset($bundles["JMSTranslationBundle"])){
@@ -70,7 +73,7 @@ class GoetasTwitalExtension extends Extension
                 'assetic.custom_'.$engine.'_directory_resource.kernel',
                 new DirectoryResourceDefinition('', $engine, array($container->getParameter('kernel.root_dir').'/Resources/views'))
             );
-
         }
+            */
     }
 }
