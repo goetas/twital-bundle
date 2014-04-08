@@ -71,17 +71,7 @@ Integration
 
 ``TwitalBundle`` comes with all features that are already supported by TwigBundle_ 
 (forms, translations, assetic, routing, etc).  
-    
-Contents
-********
-
-.. toctree::
-    :maxdepth: 3
-    
-    extension
-    loader
-    tags/index
-    
+        
 
 Contributing
 ************
@@ -102,6 +92,13 @@ Note
 I'm sorry for the *terrible* english fluency used inside the documentation, I'm trying to improve it. 
 Pull Requests are welcome.
 
+.. toctree::
+    :hidden:
+    :maxdepth: 2
+    
+    extension
+    loader
+    tags/index
 
 .. _Twig: http://twig.sensiolabs.org/
 .. _TwitalBundle: https://github.com/goetas/twital-bundle
