@@ -16,9 +16,26 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Goetas\Twital\TwitalLoader;
+use Symfony\Component\Config\FileLocatorInterface;
+use Goetas\Twital\Twig\TokenParser\DebugTokenParser;
 
 class TwitalEngine extends TwigEngine
 {
+
+    /**
+     * Constructor.
+     *
+     * @param \Twig_Environment           $environment A \Twig_Environment instance
+     * @param TemplateNameParserInterface $parser      A TemplateNameParserInterface instance
+     * @param FileLocatorInterface        $locator     A FileLocatorInterface instance
+     */
+    public function __construct(\Twig_Environment $environment, TwitalLoader $twitalLoader, TemplateNameParserInterface $parser, FileLocatorInterface $locator)
+    {
+        parent::__construct($environment, $parser, $locator);
+
+        $twitalLoader->setLoader($environment->getLoader());
+        $environment->setLoader($twitalLoader);
+    }
     /**
      * Returns true if this class is able to render the given template.
      *
@@ -33,10 +50,5 @@ class TwitalEngine extends TwigEngine
         }
         $template = $this->parser->parse($name);
         return 'twital' === $template->get('engine');
-    }
-    public function hookIntoTwig(TwitalLoader $twitalLoader)
-    {
-        $twitalLoader->setLoader($this->environment->getLoader());
-        $this->environment->setLoader($twitalLoader);
     }
 }

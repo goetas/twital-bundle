@@ -33,47 +33,18 @@ class GoetasTwitalExtension extends Extension
 
         $loaderDefinition = $container->getDefinition("twital.loader");
         foreach($config["source_adapters"] as $id => $regs){
-        	foreach($regs as $reg){
-        	    $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
-        	}
+            foreach($regs as $reg){
+                $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
+            }
         }
 
-        $twitalDefinition = $container->getDefinition("twital");
-        $extensions = $container->findTaggedServiceIds("templating.engine.twital.extension");
-        foreach ($extensions as $extensionDefinition){
-            $twitalDefinition->addMethodCall('addExtension', array($extensionDefinition));
+        $bundles = $container->getParameter("kernel.bundles");
+        if (isset($bundles["AsseticBundle"])){
+            $loader->load('assetic.xml');
         }
 
-        $loader->load('assetic.xml');
-
-
-        /*
-        $bundles = $container->getParameter('kernel.bundles');
-
-        if (0 && isset($bundles["JMSTranslationBundle"])){
+        if (isset($bundles["JMSTranslationBundle"])){
             $loader->load('jms-translation-bundle.xml');
         }
-        if (0 && isset($bundles["AsseticBundle"])){
-            $loader->load('assetic.xml');
-            $engine = 'twital';
-            // bundle resources
-            foreach ($bundles as $bundle => $bundleClass) {
-                $rc = new \ReflectionClass($bundleClass);
-                $container->setDefinition(
-                    'assetic.custom_'.$engine.'_directory_resource.'.$bundle,
-                    new DirectoryResourceDefinition($bundle, $engine, array(
-                        $container->getParameter('kernel.root_dir').'/Resources/'.$bundle.'/views',
-                        dirname($rc->getFileName()).'/Resources/views',
-                    ))
-                );
-            }
-
-            // kernel resources
-            $container->setDefinition(
-                'assetic.custom_'.$engine.'_directory_resource.kernel',
-                new DirectoryResourceDefinition('', $engine, array($container->getParameter('kernel.root_dir').'/Resources/views'))
-            );
-        }
-            */
     }
 }

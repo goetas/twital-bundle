@@ -35,7 +35,7 @@ class Configuration implements ConfigurationInterface
                         ->treatNullLike(array())
                         ->validate()
                             ->ifTrue(function($v) { return !is_array($v); })
-                            ->thenInvalid('The assetic.filters config %s must be either null or an array.')
+                            ->thenInvalid('The twital.source_adapters config %s must be either null or an array.')
                         ->end()
                     ->end()
                     ->validate()

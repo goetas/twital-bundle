@@ -8,9 +8,11 @@
 
     <services>
         <service id="twital.translation.extractor.jms" class="%twital.translation.extractor.jms.class%">
-            <argument type="service" id="twital.translation.extractor" />
+            <argument type="service" id="twig" />
+            <argument type="service" id="twital.loader" />
             <tag name="jms_translation.file_visitor" alias="twital" />
         </service>
 
     </services>
 </container>
+

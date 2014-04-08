@@ -10,16 +10,17 @@
 		<parameter key="twital.source_adapter.html5.class">Goetas\Twital\SourceAdapter\HTML5Adapter</parameter>
 		<parameter key="twital.source_adapter.xhtml.class">Goetas\Twital\SourceAdapter\XHTMLAdapter</parameter>
 		<parameter key="twital.translation.extractor.class">Goetas\TwitalBundle\Translation\TwitalExtractor</parameter>
+		
+		<parameter key="twital.translate.extension.class">Goetas\TwitalBundle\Extension\TranslateExtension</parameter>
+		
 	</parameters>
 
 	<services>
 		<service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
 			<argument type="service" id="twig" />
+			<argument type="service" id="twital.loader" />
 			<argument type="service" id="templating.name_parser" />
 			<argument type="service" id="templating.locator" />
-			<call method="hookIntoTwig">
-				<argument type="service" id="twital.loader" />
-			</call>
 		</service>
 
 		<service id="twital" class="%twital.class%">
@@ -33,9 +34,9 @@
 		</service>
 
 		<service id="twital.loader" class="%twital.loader.class%">
+            <argument type="service" id="twig.loader"></argument>
 			<argument type="service" id="twital" />
 			<argument type="constant">FALSE</argument>
-			<argument type="service" id="twig.loader"></argument>
 		</service>
 
 		<service id="twital.translation.extractor" class="%twital.translation.extractor.class%">
@@ -43,6 +44,10 @@
 			<argument type="service" id="twital.loader" />
 			<tag name="translation.extractor" alias="twital" />
 		</service>
+		
+		<service id="twital.translate.extension" class="%twital.translate.extension.class%">
+            <tag name="twital.extension"/>
+        </service>
 
 	</services>
 </container>
