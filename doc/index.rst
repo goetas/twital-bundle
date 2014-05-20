@@ -62,9 +62,9 @@ In order to make it work you have to enable ``twital`` template engine inside yo
     #optional configurations for file extension matching 
     goetas_twital:
         source_adapter:
-            twital.source_adapter.xml: ['/\.xml\.twital$/', '/\.atom\.twital$/']
-            twital.source_adapter.html: ['/\.html\.twital$/', '/\.htm\.twital$/']
-            twital.source_adapter.xhtml: ['/\.xhtml\.twital$/']
+            - { service: twital.source_adapter.xml, pattern: ['/\.xml\.twital$/', '/\.atom\.twital$/'] }
+            - { service: twital.source_adapter.html, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
+            - { service: twital.source_adapter.xhtml, pattern: ['/\.xhtml\.twital$/'] }    
 
 Integration
 ***********
