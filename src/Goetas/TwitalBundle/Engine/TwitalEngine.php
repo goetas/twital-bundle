@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Goetas\Twital\TwitalLoader;
 use Symfony\Component\Config\FileLocatorInterface;
-use Goetas\Twital\Twig\TokenParser\DebugTokenParser;
+
 
 class TwitalEngine extends TwigEngine
 {
