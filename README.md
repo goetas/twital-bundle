@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/goetas/twital-bundle.svg?branch=dev)](https://travis-ci.org/goetas/twital-bundle)
+
 TwitalBundle (Twital with Symfony2)
 ===================================
 
