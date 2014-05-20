@@ -20,16 +20,15 @@ class TranslateAttribute implements Attribute
 
         $expessions = ParserHelper::staticSplitExpression(html_entity_decode($att->value), ",");
 
-        $with = '';
-        if (trim($expessions[0])) {
-            $with = "with ".$expessions[0];
+        $params = 'trans';
+        if (isset($expessions[0]) && trim($expessions[0])) {
+            $params .= " with " . $expessions[0];
         }
-        $from = '';
         if (isset($expessions[1]) && strlen($expessions[1])) {
-            $from = " from $expessions[1]";
+            $params .= " from " . $expessions[1];
         }
 
-        $start = $context->createControlNode("trans $with $from");
+        $start = $context->createControlNode($params);
         $end = $context->createControlNode("endtrans");
 
         $node->insertBefore($start, $node->firstChild);
