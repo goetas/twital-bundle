@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/goetas/twital-bundle.svg?branch=dev)](https://travis-ci.org/goetas/twital-bundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=dev)
+[![Code Coverage](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=dev)
 
 TwitalBundle (Twital with Symfony2)
 ===================================
