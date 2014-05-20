@@ -12,7 +12,7 @@ class TwitalFormulaLoader extends TwigFormulaLoader
 
     private $twital;
 
-    public function __construct(TwitalLoader $twital,\Twig_Environment $twig)
+    public function __construct(TwitalLoader $twital, \Twig_Environment $twig)
     {
         $this->twital = $twital;
         parent::__construct($twig);
