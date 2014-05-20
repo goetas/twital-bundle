@@ -24,24 +24,22 @@ class Configuration implements ConfigurationInterface
             ->fixXmlConfig('source_adapter')
             ->children()
                 ->arrayNode('source_adapters')
-                    ->defaultValue(array(
-                    	'twital.source_adapter.xml'=>array('/\.xml\.twital$/'),
-                        'twital.source_adapter.html5'=>array('/\.html\.twital$/'),
-                        'twital.source_adapter.xhtml'=>array('/\.xhtml\.twital$/'),
-                    ))
                     ->requiresAtLeastOneElement()
-                    ->useAttributeAsKey('name')
-                    ->prototype('variable')
-                        ->treatNullLike(array())
-                        ->validate()
-                            ->ifTrue(function($v) { return !is_array($v); })
-                            ->thenInvalid('The twital.source_adapters config %s must be either null or an array.')
+                    ->useAttributeAsKey('service')
+                    ->defaultValue(array(
+                   	    array('service'=>'twital.source_adapter.xml', 'pattern' => array('/\.xml\.twital$/')),
+                        array('service'=>'twital.source_adapter.html5', 'pattern' => array('/\.html\.twital$/')),
+                        array('service'=>'twital.source_adapter.xhtml', 'pattern' => array('/\.xhtml\.twital$/')),
+                    ))
+                    ->prototype('array')
+                        ->children()
+                            ->arrayNode('pattern')
+                                ->isRequired()
+                                ->requiresAtLeastOneElement()
+                                    ->prototype('scalar')->end()
+                                ->end()
+                            ->end()
                         ->end()
-                    ->end()
-                    ->validate()
-                        ->always(function($v) {
-                            return $v;
-                        })
                     ->end()
                 ->end()
             ->end()

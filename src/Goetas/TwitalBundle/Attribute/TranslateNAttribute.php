@@ -33,10 +33,10 @@ class TranslateNAttribute implements Attribute
 
         $from = '';
         if (isset($expessions[2]) && strlen($expessions[2])) {
-            $from = "from $expessions[2]";
+            $from = " from $expessions[2]";
         }
 
-        $start = $context->createControlNode("transchoice " . $expessions[0] . " with $with $from");
+        $start = $context->createControlNode("transchoice " . $expessions[0] . " with $with".$from);
         $end = $context->createControlNode("endtranschoice");
 
         $node->insertBefore($start, $node->firstChild);
@@ -44,10 +44,5 @@ class TranslateNAttribute implements Attribute
         $node->appendChild($end);
 
         $node->removeAttributeNode($att);
-
-        echo $this->env->getExtension('translator')->getTranslator()->trans("Altre informazioni %count%|asdasdsd", array_merge(
-            array(
-            "%count%" => (isset($context["count"]) ? $context["count"] : $this->getContext($context, "count"))
-        ), (isset($context["xx"]) ? $context["xx"] : $this->getContext($context, "xx"))), "messages");
     }
 }
