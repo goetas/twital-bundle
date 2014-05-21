@@ -6,13 +6,18 @@ use Goetas\Twital\Twital;
 use Goetas\TwitalBundle\Attribute;
 use Goetas\TwitalBundle\EventSubscriber\WhiteSpaceRemovalSubscriber;
 
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TranslateExtension extends AbstractExtension
 {
 
     public function getSubscribers()
     {
         return array(
-        	new WhiteSpaceRemovalSubscriber()
+            new WhiteSpaceRemovalSubscriber()
         );
     }
 

@@ -7,6 +7,11 @@ use Goetas\Twital\Twital;
 use Goetas\Twital\TwitalLoader;
 use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
 
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TwitalFormulaLoader extends TwigFormulaLoader
 {
 

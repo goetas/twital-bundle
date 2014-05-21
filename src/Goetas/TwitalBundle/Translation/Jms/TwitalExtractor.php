@@ -5,6 +5,11 @@ use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor;
 use Goetas\Twital\TwitalLoader;
 
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TwitalExtractor extends TwigFileExtractor
 {
 

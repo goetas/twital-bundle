@@ -2,9 +2,6 @@
 
 namespace Goetas\TwitalBundle\Engine;
 
-
-
-
 use Symfony\Component\DependencyInjection\Container;
 
 
@@ -18,7 +15,11 @@ use Symfony\Bundle\TwigBundle\TwigEngine;
 use Goetas\Twital\TwitalLoader;
 use Symfony\Component\Config\FileLocatorInterface;
 
-
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TwitalEngine extends TwigEngine
 {
 

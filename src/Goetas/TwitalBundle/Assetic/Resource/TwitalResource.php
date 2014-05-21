@@ -4,6 +4,11 @@ namespace Goetas\TwitalBundle\Assetic\Resource;
 use Assetic\Factory\Resource\ResourceInterface;
 use Goetas\Twital\TwitalLoader;
 
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TwitalResource implements ResourceInterface
 {
 

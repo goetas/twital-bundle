@@ -5,7 +5,11 @@ use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Goetas\Twital\TwitalLoader;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Finder\Finder;
-
+/**
+ *
+ * @author Asmir Mustafic <goetas@gmail.com>
+ *
+ */
 class TwitalExtractor extends TwigExtractor
 {
 
