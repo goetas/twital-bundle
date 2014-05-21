@@ -33,7 +33,7 @@ class GoetasTwitalExtension extends Extension
 
         $loaderDefinition = $container->getDefinition("twital.loader");
         foreach($config["source_adapters"] as $id => $regs){
-            foreach($regs as $reg){
+            foreach($regs["pattern"] as $reg){
                 $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
             }
         }
