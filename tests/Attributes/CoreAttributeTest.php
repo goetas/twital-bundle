@@ -46,14 +46,16 @@ class CoreAttributeTest extends \PHPUnit_Framework_TestCase
         $attrReplacer = '{% for ____ak,____av in XxX if ____av|length>0 %} {{____ak | raw}}="{{ ____av|join(\'\') }}"{% endfor %}';
         return array(
 
+            //trans-attr
             array('<div class="foo" t:trans-attr="class">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans()]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" t:trans-attr="class:[{\'%var%\':var}]">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans({\'%var%\':var})]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" t:trans-attr="class:[{\'%var%\':var}, \'domain\']">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans({\'%var%\':var}, \'domain\')]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
-
+            //trans-attr multiple
             array('<div class="foo" alt="bar" t:trans-attr="class, alt">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans()],\'alt\':[\'bar\'|trans()]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" alt="bar" t:trans-attr="class:[{\'%var%\':var}], alt">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans({\'%var%\':var})],\'alt\':[\'bar\'|trans()]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" alt="bar" t:trans-attr="class:[{\'%var%\':var}, \'domain\'], alt">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|trans({\'%var%\':var}, \'domain\')],\'alt\':[\'bar\'|trans()]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
 
+            //trans-attr-n
             array('<div class="foo" t:trans-attr-n="class:[n]">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|transchoice(n)]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" alt="bar" t:trans-attr-n="class:[n], alt:[x]">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|transchoice(n)],\'alt\':[\'bar\'|transchoice(x)]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
             array('<div class="foo" t:trans-attr-n="class:[n, {\'%var%\':var}]">content</div>', '{% set XxX = XxX|default({})|merge({\'class\':[\'foo\'|transchoice(n, {\'%var%\':var})]}) %}<div'.$attrReplacer.'>content</div>', $matcher),
@@ -68,7 +70,7 @@ class CoreAttributeTest extends \PHPUnit_Framework_TestCase
     public function getData()
     {
         return array(
-            // if
+
             array('<div t:trans="">content</div>', '<div>{% trans %}content{% endtrans %}</div>'),
             array('<div t:trans="{\'%node%\'}">content %node%</div>', '<div>{% trans with {\'%node%\'} %}content %node%{% endtrans %}</div>'),
             array('<div t:trans="{\'%node%\'}, \'domain\'">content %node%</div>', '<div>{% trans with {\'%node%\'} from \'domain\' %}content %node%{% endtrans %}</div>'),
@@ -76,6 +78,11 @@ class CoreAttributeTest extends \PHPUnit_Framework_TestCase
             array('<div t:trans-n="var">content</div>', '<div>{% transchoice var with {\'%count%\':var} %}content{% endtranschoice %}</div>'),
             array('<div t:trans-n="var,{\'%node%\'}">content</div>', '<div>{% transchoice var with {\'%count%\':var}|merge({\'%node%\'}) %}content{% endtranschoice %}</div>'),
             array('<div t:trans-n="var,{\'%node%\'},\'domain\'">content</div>', '<div>{% transchoice var with {\'%count%\':var}|merge({\'%node%\'}) from \'domain\' %}content{% endtranschoice %}</div>'),
+
+            //whitespace subscriber
+            array("<div t:trans=\"\">content\n</div>", '<div>{% trans %}content{% endtrans %}</div>'),
+            array("<div t:trans=\"\">\ncontent\n</div>", '<div>{% trans %}content{% endtrans %}</div>'),
+            array("<div t:trans=\"\">\ncon\tte\t\t\nnt</div>", '<div>{% trans %}con te nt{% endtrans %}</div>'),
 
 
         );
