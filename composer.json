@@ -25,7 +25,6 @@
 		"phpunit/phpunit" : "~3",
 		"kriswallsmith/assetic" : "~1.0"
 	},
-	"minimum-stability" : "dev",
 	"autoload" : {
 		"psr-0" : {
 			"Goetas\\TwitalBundle" : "src/"
