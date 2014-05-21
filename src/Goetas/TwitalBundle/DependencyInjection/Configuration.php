@@ -27,9 +27,9 @@ class Configuration implements ConfigurationInterface
                     ->requiresAtLeastOneElement()
                     ->useAttributeAsKey('service')
                     ->defaultValue(array(
-                   	    array('service'=>'twital.source_adapter.xml', 'pattern' => array('/\.xml\.twital$/')),
-                        array('service'=>'twital.source_adapter.html5', 'pattern' => array('/\.html\.twital$/')),
-                        array('service'=>'twital.source_adapter.xhtml', 'pattern' => array('/\.xhtml\.twital$/')),
+                   	    'twital.source_adapter.xml' => array('pattern' => array('/\.xml\.twital$/')),
+                        'twital.source_adapter.html5' => array('pattern' => array('/\.html\.twital$/')),
+                        'twital.source_adapter.xhtml' => array('pattern' => array('/\.xhtml\.twital$/')),
                     ))
                     ->prototype('array')
                         ->children()
