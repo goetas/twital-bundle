@@ -1,43 +1,43 @@
 {
-	"name" : "goetas/twital-bundle",
-	"description" : "Twital templating engine Symfony2 Bundle",
-	"authors" : [{
-			"name" : "Asmir Mustafic",
-			"email" : "goetas@gmail.com"
-		}
-	],
-	"keywords" : [
-		"php",
-		"xml",
-		"templating",
-		"symfony",
-		"twig"
-	],
-	"homepage" : "https://github.com/goetas/twital-bundle",
-	"license" : "MIT",
-	"require" : {
-		"goetas/twital" : "~0.1",
-		"symfony/twig-bundle" : "~2.1",
-		"symfony/framework-bundle" : "~2.1",
-		"php" : ">=5.3.3"
-	},
-	"require-dev" : {
-		"phpunit/phpunit" : "~3",
-		"kriswallsmith/assetic" : "~1.0"
-	},
-	"autoload" : {
-		"psr-0" : {
-			"Goetas\\TwitalBundle" : "src/"
-		}
-	},
-	"autoload-dev" : {
-		"psr-4" : {
-			"Goetas\\TwitalBundle\\Tests\\" : "tests/"
-		}
-	},
-	"extra" : {
-		"branch-alias" : {
-			"dev-master" : "0.1-dev"
-		}
-	}
+    "name" : "goetas/twital-bundle",
+    "description" : "Twital templating engine Symfony2 Bundle",
+    "authors" : [{
+            "name" : "Asmir Mustafic",
+            "email" : "goetas@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "php",
+        "xml",
+        "templating",
+        "symfony",
+        "twig"
+    ],
+    "homepage" : "https://github.com/goetas/twital-bundle",
+    "license" : "MIT",
+    "require" : {
+        "goetas/twital" : "~0.1",
+        "symfony/twig-bundle" : "~2.1",
+        "symfony/framework-bundle" : "~2.1",
+        "php" : ">=5.3.3"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : "~3",
+        "kriswallsmith/assetic" : "~1.0"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Goetas\\TwitalBundle" : "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Goetas\\TwitalBundle\\Tests\\" : "tests/"
+        }
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1-dev"
+        }
+    }
 }

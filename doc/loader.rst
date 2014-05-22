@@ -2,10 +2,10 @@ Add your own source adapter
 ###########################
 
 
-The recommended  way to add your TwitalSourceAdapter_ to ``TwitalLoader`` is to register it using the Symfony2
-dependency injection system.
+The recommended way to add your TwitalSourceAdapter_ to ``TwitalLoader`` is registering it using the 
+`Symfony2 dependency injection <http://symfony.com/doc/current/components/dependency_injection/index.html>`__ system.
 
-Depending on your preferences you can choose witch syntax adopt.
+Depending on your preferences, you can choose which syntax to adopt.
 
 Using XML:
 
@@ -34,7 +34,7 @@ Using PHP:
     ;
 
     
-Once you have added one of this configurations to your bundle, you have to choose witch 
+Once you have added one of this configurations to your bundle, choose which 
 file name pattern will activate the loader. To do this you have to edit your ``config.yml``. 
 
 .. code-block:: yaml
@@ -43,13 +43,13 @@ file name pattern will activate the loader. To do this you have to edit your ``c
         source_adapter:
             my.source_adapter: ['/\.myext1\.twital$/', '/\.myext2\.twital$/']
             
-Alternative to add your source adapter            
---------------------------------------
+Alternative way to add your source adapter            
+------------------------------------------
 
-If you prefer to use the Symfony2 service tagging ssystem, you can also use the following method.
+If you prefer to use the Symfony2 service tagging system, you can also use the following method:
 
-You have to add your adapters as services and tag them with ``twital.source_adapter``.
-You have also to specify the ``pattern`` attribute.
+You have to add your adapters as services and tag them with ``twital.source_adapter``, 
+and you also have to specify the ``pattern`` attribute.
  
 Using XML:
 

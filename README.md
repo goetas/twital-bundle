@@ -1,32 +1,29 @@
-[![Build Status](https://travis-ci.org/goetas/twital-bundle.svg?branch=dev)](https://travis-ci.org/goetas/twital-bundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=dev)
-[![Code Coverage](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=dev)
+[![Build Status](https://travis-ci.org/goetas/twital-bundle.svg?branch=master)](https://travis-ci.org/goetas/twital-bundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=master)
 
 TwitalBundle (Twital with Symfony2)
 ===================================
 
-TwitalBundle is a  [Symfony2](http://symfony.com) bundle that integrates [Twital](https://github.com/goetas/twital) template engine into Synfony2.
-This enables you to use all Twig/Symfony2 functionalities with Twital template engine language syntax.
 
-To learn more about *Twital*, you can read the  [dedicated documentation](http://twital.readthedocs.org).
+TwitalBundle is a [Symfony2](http://symfony.com/) bundle that integrates the [Twital](https://github.com/goetas/twital/) template engine into Synfony2 framework.
+This enables you to use all Twig/Symfony2 functionalities with the Twital template engine language syntax.
+
+To learn more about Twital, you can read the [dedicated documentation](http://twital.readthedocs.org/).
 
 
-Documentation
--------------
-
-Go here http://twitalbundle.readthedocs.org/ to read a more detailed documentation about **TwitalBundle**.
 
 Install
 -------
 
-The recommended way to install ``TwitalBundle`` is via [Composer](https://getcomposer.org/).
+There are two recommended ways to install TwitalBundle via [Composer](https://getcomposer.org/):
 
-Using  ``composer require`` command
+* using the ``composer require`` command:
 
 ```bash
 composer require 'goetas/twital-bundle:*'
 ```
-Or adding its dependency to your ``composer.json`` file
+* adding the dependency to your ``composer.json`` file:
 
 ```js
 "require": {
@@ -38,7 +35,7 @@ Or adding its dependency to your ``composer.json`` file
 
 
 Enable the bundle
----------------
+-----------------
 
 To enable the bundle in the kernel:
 
@@ -57,9 +54,10 @@ public function registerBundles()
 ```
 
 Configure
---------
+---------
 
-In order to make it work you have to enable ``twital`` template engine inside your ``config.yml``.
+In order to make it work, you have to enable the ``twital`` template engine inside your ``config.yml``.
+
 
 ```yaml
 framework:
@@ -73,11 +71,17 @@ goetas_twital:
         - { service: twital.source_adapter.html, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
         - { service: twital.source_adapter.xhtml, pattern: ['/\.xhtml\.twital$/'] }    
 ```
+Documentation
+-------------
+
+Go here http://twitalbundle.readthedocs.org/ to read a more detailed documentation about TwitalBundle.
+
+
 
 Integration
 ----------
 
-``TwitalBundle`` comes with all features that are already supported by [TwigBundle](https://github.com/symfony/TwigBundle) 
+TwitalBundle comes with all features that are already supported by [TwigBundle](https://github.com/symfony/TwigBundle) 
 (forms, translations, assetic, routing, etc).  
 
 

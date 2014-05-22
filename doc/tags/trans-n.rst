@@ -1,10 +1,10 @@
 ``trans-n``
-========
+===========
 
-``t:trans-n`` attribute is an alias of ``transchoice`` symfony tag
+The ``t:trans-n`` attribute is an alias of the ``transchoice`` Symfony tag
 and allows you to translate the content of a node with plurals.
 
-Let's see how it works:
+Let's see how does it work:
 
 .. code-block:: xml+jinja
 
@@ -13,7 +13,7 @@ Let's see how it works:
     </div>
 
 
-Of course you can also use variables inside your text.
+Of course, you can also use variables in your text.
 
 .. code-block:: xml+jinja
 
@@ -32,4 +32,4 @@ You can also specify different domains for your translations.
 
 .. tip::
 
-    See here http://symfony.com/it/doc/current/book/translation.html to learn more about Symfony translation system.
+    See here http://symfony.com/it/doc/current/book/translation.html to learn more about the Symfony translation system.

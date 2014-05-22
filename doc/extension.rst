@@ -2,12 +2,12 @@ Add your own Twital extension
 #############################
 
 
-The recommended  way to add your TwitalExtension_ to ``Twital`` instance is to register it using the Symfony2
-dependency injection system.
+The recommended way to add your TwitalExtension_ to ``Twital`` instance is registering it using the 
+`Symfony2 dependency injection <http://symfony.com/doc/current/components/dependency_injection/index.html>`__ system.
 
-You have to add your extensions as servicees and tag them with ``twital.extension``.
+You have to add your extensions as services and tag them with the ``twital.extension`` tag.
 
-Depending on your preferences you can choose witch syntax adopt.
+Depending on your preferences, you can choose which syntax to adopt.
 
 Using XML:
 

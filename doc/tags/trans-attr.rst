@@ -1,22 +1,22 @@
 ``trans-attr``
 ==============
 
-``t:trans-attr`` attribute is an alias of ``trans`` symfony tag, but works only with HTML/XML attributes, 
-and allows you to translate the content of one or more attribute.
+The ``t:trans-attr`` attribute is an alias of the ``trans`` Symfony tag, but it works only with HTML/XML attributes, 
+and allows you to translate the content of one or more attributes.
 
-The main advantage of ``t:trans-attr`` is the preservation of original document structure, 
+The main advantage of ``t:trans-attr`` is the preservation of the original document structure: 
 you do not need to change the `value` attribute with dirty code.
 
-Let's see how it works:
+Let's see how does it work:
 
 .. code-block:: xml+jinja
 
     <inpiut value="Apple" t:trans-attr="value"/>
         
 
-This option will allow to Symfony to extract and translate the "Apple" word.
+This option will allow Symfony to extract and translate the "Apple" word.
 
-Of course you can also use variables inside your text.
+Of course, you can also use variables inside your text.
 
 .. code-block:: xml+jinja
 
@@ -43,4 +43,4 @@ You can also specify different domains for your translations.
         
 .. tip::
 
-    See here http://symfony.com/it/doc/current/book/translation.html to learn more about Symfony translation system.
+    See here http://symfony.com/it/doc/current/book/translation.html to learn more about the Symfony translation system.
