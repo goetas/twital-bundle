@@ -91,7 +91,7 @@ Contents
 ********
 
 .. toctree::
-:hidden:
+    :hidden:
     :maxdepth: 2
     
     extension
