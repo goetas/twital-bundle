@@ -10,7 +10,7 @@
 		<parameter key="twital.source_adapter.html5.class">Goetas\Twital\SourceAdapter\HTML5Adapter</parameter>
 		<parameter key="twital.source_adapter.xhtml.class">Goetas\Twital\SourceAdapter\XHTMLAdapter</parameter>
 		<parameter key="twital.translation.extractor.class">Goetas\TwitalBundle\Translation\TwitalExtractor</parameter>
-		
+		<parameter key="twital.cache_warmer.class">Goetas\TwitalBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
 		<parameter key="twital.translate.extension.class">Goetas\TwitalBundle\Extension\TranslateExtension</parameter>
 		
 	</parameters>
@@ -49,5 +49,11 @@
             <tag name="twital.extension"/>
         </service>
 
+        <service id="twital.cache_warmer" class="%twital.cache_warmer.class%" public="false">
+            <tag name="kernel.cache_warmer" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="templating.finder" />
+        </service>
+        
 	</services>
 </container>
