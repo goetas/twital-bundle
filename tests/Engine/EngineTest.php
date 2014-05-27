@@ -5,6 +5,7 @@ use Goetas\TwitalBundle\Assetic\TwitalFormulaLoader;
 use Goetas\Twital\Twital;
 use Goetas\Twital\TwitalLoader;
 use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Templating\TemplateReference;
 use Goetas\TwitalBundle\Engine\TwitalEngine;
 use Goetas\Twital\Template;
@@ -13,18 +14,6 @@ use Symfony\Component\Templating\TemplateNameParser;
 
 class EngineTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testRightLoader()
-    {
-        $engine = $this->getTwital();
-
-        $ref = new \ReflectionObject($engine);
-        $prop = $ref->getProperty('environment');
-        $prop->setAccessible(true);
-
-        $this->assertInstanceOf('Goetas\Twital\TwitalLoader', $prop->getValue($engine)->getLoader());
-    }
-
     public function testExistsWithNonExistentTemplates()
     {
         $engine = $this->getTwital();
@@ -73,6 +62,8 @@ class EngineTest extends \PHPUnit_Framework_TestCase
         $parser = new TemplateNameParser();
         $locator = $this->getMock('Symfony\Component\Config\FileLocatorInterface');
 
-        return new TwitalEngine($twig, $twitalLoader, $parser, $locator);
+        $twigEngine = new TwigEngine($twig, $parser, $locator);
+
+        return new TwitalEngine($twigEngine, $parser);
     }
 }
