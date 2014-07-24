@@ -17,7 +17,7 @@ class TranslateExtension extends AbstractExtension
     public function getSubscribers()
     {
         return array(
-            new WhiteSpaceRemovalSubscriber()
+            new WhiteSpaceRemovalSubscriber(array(), array('http://www.w3.org/1999/xhtml'))
         );
     }
 

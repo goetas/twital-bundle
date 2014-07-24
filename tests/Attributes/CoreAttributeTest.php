@@ -79,12 +79,6 @@ class CoreAttributeTest extends \PHPUnit_Framework_TestCase
             array('<div t:trans-n="var,{\'%node%\'}">content</div>', '<div>{% transchoice var with {\'%count%\':var}|merge({\'%node%\'}) %}content{% endtranschoice %}</div>'),
             array('<div t:trans-n="var,{\'%node%\'},\'domain\'">content</div>', '<div>{% transchoice var with {\'%count%\':var}|merge({\'%node%\'}) from \'domain\' %}content{% endtranschoice %}</div>'),
 
-            //whitespace subscriber
-            array("<div t:trans=\"\">content\n</div>", '<div>{% trans %}content{% endtrans %}</div>'),
-            array("<div t:trans=\"\">\ncontent\n</div>", '<div>{% trans %}content{% endtrans %}</div>'),
-            array("<div t:trans=\"\">\ncon\tte\t\t\nnt</div>", '<div>{% trans %}con te nt{% endtrans %}</div>'),
-
-
         );
     }
 }

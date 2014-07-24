@@ -43,11 +43,15 @@ class WhiteSpaceRemovalSubscriber implements EventSubscriberInterface
                 $text->data = preg_replace('/\s+/', ' ', $text->data);
 
                 if ($text->parentNode->childNodes->length === 1) {
-                    $text->data = trim($text->data);
+                    $trimmed = trim($text->data);
+                    if(!strlen($trimmed) && strlen($text->data)){
+                        $trimmed =" ";
+                    }
+                    $text->data = $trimmed;
                 } elseif ($text->parentNode->hasAttributeNs(Twital::NS, 'trans') || $text->parentNode->hasAttributeNs(Twital::NS, 'trans-n')) {
                     if ($text->parentNode->firstChild === $text) {
                         $text->data = ltrim($text->data);
-                    } else {
+                    }elseif ($text->parentNode->lastChild === $text) {
                         $text->data = rtrim($text->data);
                     }
                 }
@@ -56,11 +60,11 @@ class WhiteSpaceRemovalSubscriber implements EventSubscriberInterface
     }
     private function isAllowedNode(\DOMElement $element) {
 
-        if ($this->allowedTags && !in_array($text->parentNode->localName, $this->allowedTags)) {
+        if ($this->allowedTags && !in_array($element->parentNode->localName, $this->allowedTags)) {
         	return false;
         }
 
-        if ($this->allowedNamespaces && !in_array($text->parentNode->namespaceURI, $this->allowedNamespaces)) {
+        if ($this->allowedNamespaces && !in_array($element->parentNode->namespaceURI, $this->allowedNamespaces)) {
             return false;
         }
 

@@ -1,5 +1,5 @@
 <?php
-namespace Goetas\TwitalBundle\Tests\Assetic;
+namespace Goetas\TwitalBundle\Tests\Engine;
 
 use Goetas\TwitalBundle\Assetic\TwitalFormulaLoader;
 use Goetas\Twital\Twital;
