@@ -30,7 +30,14 @@ class WhiteSpaceRemovalSubscriber implements EventSubscriberInterface
             'compiler.post_load' => array( 'removeWhitespace', - 10)
         );
     }
-
+    private function performXpathQuery(\DOMXPath $xp, $query, \DOMNode $ref)
+    {
+        if (defined('HHVM_VERSION')) {
+            return $xp->query($query, $ref);
+        } else {
+            return $xp->query($query, $ref, false);
+        }
+    }
     public function removeWhitespace(TemplateEvent $event)
     {
         $doc = $event->getTemplate()->getDocument();
@@ -38,7 +45,7 @@ class WhiteSpaceRemovalSubscriber implements EventSubscriberInterface
         $xp = new \DOMXPath($doc);
         $xp->registerNamespace("t", Twital::NS);
 
-        foreach ($xp->query("//text()[ancestor::*[@t:trans or @t:trans-n]]", $doc, false) as $text) {
+        foreach ($this->performXpathQuery($xp, "//text()[ancestor::*[@t:trans or @t:trans-n]]", $doc) as $text) {
             if ($this->isAllowedNode($text->parentNode)) {
                 $text->data = preg_replace('/\s+/', ' ', $text->data);
 
