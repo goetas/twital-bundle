@@ -67,11 +67,11 @@ class WhiteSpaceRemovalSubscriber implements EventSubscriberInterface
     }
     private function isAllowedNode(\DOMElement $element) {
 
-        if ($this->allowedTags && !in_array($element->parentNode->localName, $this->allowedTags)) {
+        if ($this->allowedTags && !in_array($element->localName, $this->allowedTags)) {
         	return false;
         }
 
-        if ($this->allowedNamespaces && !in_array($element->parentNode->namespaceURI, $this->allowedNamespaces)) {
+        if ($this->allowedNamespaces && !in_array($element->namespaceURI, $this->allowedNamespaces)) {
             return false;
         }
 
