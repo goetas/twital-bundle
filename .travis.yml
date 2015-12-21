@@ -9,7 +9,6 @@ php:
   - 5.6
   - 7.0
   - hhvm
-  - hhvm-nightly
 
 env:
   - SYMFONY_VERSION="~2.3"
@@ -25,8 +24,7 @@ matrix:
       env: SYMFONY_VERSION="~3.0"
 
 before_script:
-  - if [[ "$TRAVIS_PHP_VERSION" == "hhvm" ]]; then echo -e '\nhhvm.libxml.ext_entity_whitelist = "file"' | sudo tee -a /etc/hhvm/php.ini; fi
-  - if [[ "$TRAVIS_PHP_VERSION" == "hhvm-nightly" ]]; then echo -e '\nhhvm.libxml.ext_entity_whitelist = "file"' | sudo tee -a /etc/hhvm/php.ini; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "hhvm" ]]; then echo -e '\nhhvm.libxml.ext_entity_whitelist = "file"' | tee -a /etc/hhvm/php.ini; fi
   - composer require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
   - composer install --prefer-dist --dev
 
