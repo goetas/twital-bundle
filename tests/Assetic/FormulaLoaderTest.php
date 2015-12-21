@@ -15,8 +15,8 @@ class TwigFormulaLoaderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->twig = new \Twig_Environment();
         $this->twitalLoader = new TwitalLoader();
+        $this->twig = new \Twig_Environment($this->twitalLoader);
     }
 
     public function testMixture()
