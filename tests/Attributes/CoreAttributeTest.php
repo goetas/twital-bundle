@@ -43,7 +43,7 @@ class CoreAttributeTest extends \PHPUnit_Framework_TestCase
     public function getDataDynamic()
     {
         $matcher = '/{% set (.*?) /';
-        $attrReplacer = '{% for ____ak,____av in XxX if ____av|length>0 %} {{____ak | raw}}="{{ ____av|join(\'\') }}"{% endfor %}';
+        $attrReplacer = '{% for ____ak,____av in XxX if (____av|length>0) and not (____av|length == 1 and ____av[0] is same as(false)) %} {{____ak | raw}}{% if ____av|length > 1 or ____av[0] is not same as(true) %}="{{ ____av|join(\'\') }}"{% endif %}{% endfor %}';
         return array(
 
             //trans-attr
