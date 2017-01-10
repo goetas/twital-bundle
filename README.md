@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.org/goetas/twital-bundle.svg?branch=master)](https://travis-ci.org/goetas/twital-bundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goetas/twital-bundle/?branch=master)
+[![Build Status](https://travis-ci.org/goetas/twital-bundle.png?branch=dev)](https://travis-ci.org/goetas/twital-bundle)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/quality-score.png)](https://scrutinizer-ci.com/g/goetas/twital-bundle/)
+[![Code Coverage](https://scrutinizer-ci.com/g/goetas/twital-bundle/badges/coverage.png)](https://scrutinizer-ci.com/g/goetas/twital-bundle/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/goetas/twital-bundle/master/LICENSE)
+[![Packagist](https://img.shields.io/packagist/v/goetas/twital-bundle.svg)](https://packagist.org/packages/goetas/twital-bundle)
 
 TwitalBundle (Twital with Symfony2)
 ===================================
@@ -16,23 +18,11 @@ To learn more about Twital, you can read the [dedicated documentation](http://tw
 Install
 -------
 
-There are two recommended ways to install TwitalBundle via [Composer](https://getcomposer.org/):
-
-* using the ``composer require`` command:
+The recommended way to install TwitalBundle is using [Composer](https://getcomposer.org/):
 
 ```bash
-composer require 'goetas/twital-bundle:*'
+composer require 'goetas/twital-bundle'
 ```
-* adding the dependency to your ``composer.json`` file:
-
-```js
-"require": {
-    ..
-    "goetas/twital-bundle": "*",
-    ..
-}
-```
-
 
 Enable the bundle
 -----------------
@@ -83,10 +73,3 @@ Integration
 
 TwitalBundle comes with all features that are already supported by [TwigBundle](https://github.com/symfony/TwigBundle) 
 (forms, translations, assetic, routing, etc).  
-
-
-Note
-----
-
-I'm sorry for the *terrible* english fluency used inside the documentation, I'm trying to improve it. 
-Pull Requests are welcome.

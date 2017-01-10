@@ -16,9 +16,10 @@
     "homepage" : "https://github.com/goetas/twital-bundle",
     "license" : "MIT",
     "require" : {
-        "goetas/twital" : "~0.1",
+        "goetas/twital" : "~1.0",
         "symfony/twig-bundle" : "~2.3|~3.0",
         "symfony/framework-bundle" : "~2.3|~3.0",
+        "symfony/templating": "~2.3|~3.0",
         "php" : ">=5.3.3"
     },
     "require-dev" : {
@@ -38,7 +39,7 @@
     },
     "extra" : {
         "branch-alias" : {
-            "dev-master" : "0.1-dev"
+            "dev-master" : "1.x-dev"
         }
     }
 }

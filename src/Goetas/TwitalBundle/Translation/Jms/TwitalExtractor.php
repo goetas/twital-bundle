@@ -34,11 +34,11 @@ class TwitalExtractor extends TwigFileExtractor
 
     function visitFile(\SplFileInfo $file, MessageCatalogue $catalogue)
     {
-        if ($file->getExtension() == 'twital' && ($adapter = $this->twitalLoader->getSourceAdapter((string) $file))) {
+        if ($file->getExtension() == 'twital' && ($adapter = $this->twitalLoader->getSourceAdapter((string)$file))) {
 
-            $source = $this->twitalLoader->getTwital()->compile($adapter, file_get_contents((string) $file));
+            $source = $this->twitalLoader->getTwital()->compile($adapter, file_get_contents((string)$file));
 
-            $ast = $this->twig->parse($this->twig->tokenize($source, (string) $file));
+            $ast = $this->twig->parse($this->twig->tokenize($source, (string)$file));
 
             $this->visitTwigFile($file, $catalogue, $ast);
         }

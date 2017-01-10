@@ -23,28 +23,26 @@ class Configuration implements ConfigurationInterface
             // filters
             ->fixXmlConfig('source_adapter')
             ->children()
-                ->arrayNode('source_adapters')
-                    ->requiresAtLeastOneElement()
-                    ->useAttributeAsKey('service')
-                    ->defaultValue(array(
-                   	    'twital.source_adapter.xml' => array('pattern' => array('/\.xml\.twital$/')),
-                        'twital.source_adapter.html5' => array('pattern' => array('/\.html\.twital$/')),
-                        'twital.source_adapter.xhtml' => array('pattern' => array('/\.xhtml\.twital$/')),
-                    ))
-                    ->prototype('array')
-                        ->children()
-                            ->arrayNode('pattern')
-                                ->isRequired()
-                                ->requiresAtLeastOneElement()
-                                    ->prototype('scalar')->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
+            ->arrayNode('source_adapters')
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('service')
+            ->defaultValue(array(
+                'twital.source_adapter.xml' => array('pattern' => array('/\.xml\.twital$/')),
+                'twital.source_adapter.html5' => array('pattern' => array('/\.html\.twital$/')),
+                'twital.source_adapter.xhtml' => array('pattern' => array('/\.xhtml\.twital$/')),
+            ))
+            ->prototype('array')
+            ->children()
+            ->arrayNode('pattern')
+            ->isRequired()
+            ->requiresAtLeastOneElement()
+            ->prototype('scalar')->end()
             ->end()
-
-        ;
+            ->end()
+            ->end()
+            ->end()
+            ->end()
+            ->end();
 
         return $builder;
     }
