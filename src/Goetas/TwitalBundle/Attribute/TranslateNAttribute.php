@@ -21,7 +21,7 @@ class TranslateNAttribute implements Attribute
 
         $expessions = ParserHelper::staticSplitExpression($att->value, ",");
 
-        if (! isset($expessions[0]) || ! strlen($expessions[0])) {
+        if (!isset($expessions[0]) || !strlen($expessions[0])) {
             throw new \Exception("The count for trans-n is required");
         }
 
@@ -36,7 +36,7 @@ class TranslateNAttribute implements Attribute
             $from = " from $expessions[2]";
         }
 
-        $start = $context->createControlNode("transchoice " . $expessions[0] . " with $with".$from);
+        $start = $context->createControlNode("transchoice " . $expessions[0] . " with $with" . $from);
         $end = $context->createControlNode("endtranschoice");
 
         $node->insertBefore($start, $node->firstChild);

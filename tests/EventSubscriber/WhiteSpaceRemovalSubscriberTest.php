@@ -5,13 +5,16 @@ use Goetas\Twital\EventDispatcher\TemplateEvent;
 use Goetas\Twital\Twital;
 use Goetas\Twital\Template;
 use Goetas\TwitalBundle\EventSubscriber\WhiteSpaceRemovalSubscriber;
+
 class WhiteSpaceRemovalSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     private $twital;
+
     public function setUp()
     {
         $this->twital = new Twital();
     }
+
     public function getTranslatableCode()
     {
         return array(
@@ -23,17 +26,18 @@ class WhiteSpaceRemovalSubscriberTest extends \PHPUnit_Framework_TestCase
             array("  con <b> a     </b> <i>      </i> tent  ", "con <b>a</b> <i> </i> tent"),
         );
     }
+
     /**
      *
      * @dataProvider getTranslatableCode
      */
     public function testWhitespaceRemoval($original, $expected)
     {
-        foreach (array('t:trans=""', 't:trans-n=""') as $tag){
+        foreach (array('t:trans=""', 't:trans-n=""') as $tag) {
             $document = new \DOMDocument('1.0', 'UTF-8');
             $document->loadXML($this->wrapHTML($original, $tag));
 
-            $templateEvent = new TemplateEvent($this->twital,  new Template($document));
+            $templateEvent = new TemplateEvent($this->twital, new Template($document));
 
             $subscriber = new WhiteSpaceRemovalSubscriber();
 
@@ -42,7 +46,9 @@ class WhiteSpaceRemovalSubscriberTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($this->wrapHTML($expected, $tag), $document->saveXML($document->documentElement));
         }
     }
-    private function wrapHTML($text, $tag){
-        return "<div xmlns:t=\"".Twital::NS."\" $tag>$text</div>";
+
+    private function wrapHTML($text, $tag)
+    {
+        return "<div xmlns:t=\"" . Twital::NS . "\" $tag>$text</div>";
     }
 }

@@ -18,19 +18,15 @@
 
     <services>
         <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
-            <argument type="service" id="templating.engine.twig" />
-            <argument type="service" id="templating.name_parser" />
+            <argument type="service" id="templating.engine.twig"/>
+            <argument type="service" id="templating.name_parser"/>
         </service>
 
-        <service id="twital" class="%twital.class%">
-        </service>
+        <service id="twital" class="%twital.class%"></service>
 
-        <service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%">
-        </service>
-        <service id="twital.source_adapter.html5" class="%twital.source_adapter.html5.class%">
-        </service>
-        <service id="twital.source_adapter.xhtml" class="%twital.source_adapter.xhtml.class%">
-        </service>
+        <service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%"></service>
+        <service id="twital.source_adapter.html5" class="%twital.source_adapter.html5.class%"></service>
+        <service id="twital.source_adapter.xhtml" class="%twital.source_adapter.xhtml.class%"></service>
 
         <service id="twital.loader" class="%twital.loader.class%">
             <argument></argument>

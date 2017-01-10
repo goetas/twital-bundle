@@ -27,23 +27,23 @@ class GoetasTwitalExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('twital.xml');
 
 
         $loaderDefinition = $container->getDefinition("twital.loader");
-        foreach($config["source_adapters"] as $id => $regs){
-            foreach($regs["pattern"] as $reg){
+        foreach ($config["source_adapters"] as $id => $regs) {
+            foreach ($regs["pattern"] as $reg) {
                 $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
             }
         }
 
         $bundles = $container->getParameter("kernel.bundles");
-        if (isset($bundles["AsseticBundle"])){
+        if (isset($bundles["AsseticBundle"])) {
             $loader->load('assetic.xml');
         }
 
-        if (isset($bundles["JMSTranslationBundle"])){
+        if (isset($bundles["JMSTranslationBundle"])) {
             $loader->load('jms-translation-bundle.xml');
         }
     }
