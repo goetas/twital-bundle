@@ -13,9 +13,12 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
-
+         strict="false"
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
          verbose="false">
+    <php>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="1000" />
+    </php>
     <testsuites>
         <testsuite name="Twital">
             <directory>./tests/</directory>
