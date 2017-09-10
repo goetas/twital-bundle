@@ -4,6 +4,7 @@ namespace Goetas\TwitalBundle\Translation\Jms;
 use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor;
 use Goetas\Twital\TwitalLoader;
+use JMS\TranslationBundle\Translation\FileSourceFactory;
 
 /**
  *
