@@ -25,9 +25,9 @@ class TwitalExtractor extends TwigFileExtractor
      */
     private $twig;
 
-    public function __construct(\Twig_Environment $twig, TwitalLoader $twitalLoader)
-    {
-        parent::__construct($twig);
+	public function __construct(\Twig_Environment $twig, FileSourceFactory $fileSourceFactory, TwitalLoader $twitalLoader)
+	{
+		parent::__construct($twig, $fileSourceFactory);
         $this->twig = $twig;
         $this->twitalLoader = $twitalLoader;
     }

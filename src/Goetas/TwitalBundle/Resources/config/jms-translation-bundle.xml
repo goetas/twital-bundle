@@ -10,6 +10,7 @@
     <services>
         <service id="twital.translation.extractor.jms" class="%twital.translation.extractor.jms.class%">
             <argument type="service" id="twig"/>
+            <argument type="service" id="jms_translation.file_source_factory" />
             <argument type="service" id="twital.loader"/>
             <tag name="jms_translation.file_visitor" alias="twital"/>
         </service>
