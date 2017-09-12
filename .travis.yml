@@ -6,7 +6,7 @@ git:
 cache:
   directories:
     - $HOME/.composer/cache
-
+dist: trusty
 matrix:
     include:
         - php: hhvm
@@ -22,6 +22,7 @@ matrix:
 
         - php: 5.3
           env: SYMFONY_VERSION="~2.3" TWIG_VERSION="^1.10"
+          dist: precise
 
         - php: 5.6
           env: SYMFONY_VERSION="~2.8" TWIG_VERSION="^1.10"
