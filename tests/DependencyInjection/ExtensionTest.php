@@ -82,6 +82,19 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($container->hasDefinition('twital.translation.extractor.jms'));
     }
 
+    public function testTwigFullCompat()
+    {
+        $loader = new GoetasTwitalExtension();
+        $container = new ContainerBuilder();
+        $container->setParameter('kernel.bundles', array());
+        $loader->load($this->getTwigFullCompatConfig(), $container);
+
+        $def = $container->getDefinition('twital');
+        $calls = $def->getMethodCalls();
+        $this->assertEquals("addExtension", $calls[0][0]);
+        $this->assertEquals("twital.extension.full_twig_compatibility", (string)$calls[0][1][0]);
+    }
+
     protected function getFullConfig()
     {
         $parser = new Parser();
@@ -89,6 +102,17 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
 goetas_twital:
     source_adapter:
         - { service: twital.source_adapter.xml, pattern: ['/\.xml\.twital$/', '/\.atom\.twital$/'] }
+EOF;
+
+        return $parser->parse($yaml);
+    }
+
+    protected function getTwigFullCompatConfig()
+    {
+        $parser = new Parser();
+        $yaml = <<<EOF
+goetas_twital:
+    full_twig_compatibility: true
 EOF;
 
         return $parser->parse($yaml);

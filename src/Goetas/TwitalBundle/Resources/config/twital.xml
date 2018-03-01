@@ -22,6 +22,7 @@
             <argument type="service" id="templating.name_parser"/>
         </service>
 
+
         <service id="twital" class="%twital.class%"></service>
 
         <service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%"></service>
@@ -33,6 +34,8 @@
             <argument type="service" id="twital"/>
             <argument type="constant">FALSE</argument>
         </service>
+
+        <service id="twital.extension.full_twig_compatibility" class="Goetas\Twital\Extension\FullCompatibilityTwigExtension" public="false"/>
 
         <service id="twital.translation.extractor" class="%twital.translation.extractor.class%">
             <argument type="service" id="twig"/>

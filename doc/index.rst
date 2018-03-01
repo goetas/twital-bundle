@@ -1,8 +1,8 @@
 What is TwitalBundle?
 #####################
 
-TwitalBundle is a Symfony2_ bundle that integrates the Twital_ template engine into Synfony2.
-This enables you to use all Twig/Symfony2 functionalities with the Twital template engine language syntax.
+TwitalBundle is a Symfony_ bundle that integrates the Twital_ template engine into Synfony2.
+This enables you to use all Twig/Symfony functionalities with the Twital template engine language syntax.
 
 To learn more about Twital_, you can read the `dedicated documentation <http://twital.readthedocs.org/>`__.
 
@@ -10,23 +10,11 @@ To learn more about Twital_, you can read the `dedicated documentation <http://t
 Install
 *******
 
-There are two recommended ways to install TwitalBundle via Composer_:
-
-* using the ``composer require`` command:
+The recommended way to install TwitalBundle is via Composer_:
 
 .. code-block:: bash
 
-    composer require 'goetas/twital-bundle:*'
-
-* adding the dependency to your ``composer.json`` file:
-
-.. code-block:: js
-
-    "require": {
-        ..
-        "goetas/twital-bundle": "*",
-        ..
-    }
+    composer require 'goetas/twital-bundle'
 
 
 Enable the bundle
@@ -59,8 +47,12 @@ In order to make it work, you have to enable the ``twital`` template engine insi
         templating:
             engines: ['twig', 'twital']
             
-    #optional configurations used for file extension matching 
+    # optional configurations
     goetas_twital:
+
+        full_twig_compatibility: true # default is false, to avoid in tag if conditions
+
+        # extra file extension matching
         source_adapter:
             - { service: twital.source_adapter.xml, pattern: ['/\.xml\.twital$/', '/\.atom\.twital$/'] }
             - { service: twital.source_adapter.html, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
@@ -110,5 +102,5 @@ Pull Requests are welcome.
 .. _TwitalBundle: https://github.com/goetas/twital-bundle
 .. _TwigBundle: https://github.com/symfony/TwigBundle
 .. _Twital: https://github.com/goetas/twital
-.. _Symfony2: http://symfony.com
+.. _Symfony: http://symfony.com
 .. _Composer: https://getcomposer.org/
