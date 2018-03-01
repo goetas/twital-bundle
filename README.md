@@ -4,12 +4,12 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/goetas/twital-bundle/master/LICENSE)
 [![Packagist](https://img.shields.io/packagist/v/goetas/twital-bundle.svg)](https://packagist.org/packages/goetas/twital-bundle)
 
-TwitalBundle (Twital with Symfony2)
+TwitalBundle (Twital with Symfony)
 ===================================
 
 
-TwitalBundle is a [Symfony2](http://symfony.com/) bundle that integrates the [Twital](https://github.com/goetas/twital/) template engine into Synfony2 framework.
-This enables you to use all Twig/Symfony2 functionalities with the Twital template engine language syntax.
+TwitalBundle is a [Symfony](http://symfony.com/) bundle that integrates the [Twital](https://github.com/goetas/twital/) template engine into Synfony2 framework.
+This enables you to use all Twig/Symfony functionalities with the Twital template engine language syntax.
 
 To learn more about Twital, you can read the [dedicated documentation](http://twital.readthedocs.org/).
 
