@@ -20,6 +20,10 @@ class Configuration implements ConfigurationInterface
         $builder = new TreeBuilder();
 
         $builder->root('twital')
+            ->children()
+                ->booleanNode('full_twig_compatibility')->defaultFalse()
+                ->end()
+            ->end()
             // filters
             ->fixXmlConfig('source_adapter')
             ->children()
