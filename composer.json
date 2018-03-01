@@ -1,5 +1,6 @@
 {
     "name" : "goetas/twital-bundle",
+    "type": "symfony-bundle",
     "description" : "Twital templating engine Symfony2 Bundle",
     "authors" : [{
             "name" : "Asmir Mustafic",
