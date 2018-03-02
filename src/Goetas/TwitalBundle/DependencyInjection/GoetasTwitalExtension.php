@@ -51,5 +51,9 @@ class GoetasTwitalExtension extends Extension
         if (isset($bundles["JMSTranslationBundle"])) {
             $loader->load('jms-translation-bundle.xml');
         }
+
+        if (!class_exists('Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinderInterface')) {
+            $container->removeDefinition('twital.cache_warmer');
+        }
     }
 }
