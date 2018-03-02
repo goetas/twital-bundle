@@ -17,11 +17,10 @@
     </parameters>
 
     <services>
-        <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
-            <argument type="service" id="templating.engine.twig"/>
+        <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="true">
+            <argument type="service" id="templating.engine.twig" on-invalid="null"/>
             <argument type="service" id="templating.name_parser"/>
         </service>
-
 
         <service id="twital" class="%twital.class%" public="true"></service>
 
