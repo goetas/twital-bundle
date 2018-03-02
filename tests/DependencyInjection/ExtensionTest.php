@@ -11,7 +11,6 @@ use Symfony\Component\Yaml\Parser;
  */
 class ExtensionTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testLoad()
     {
         $loader = new GoetasTwitalExtension();
@@ -26,6 +25,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($container->hasDefinition('twital.source_adapter.xml'), "XML Adpater");
         $this->assertTrue($container->hasDefinition('twital.source_adapter.html5'), "HTML5 Adpater");
         $this->assertTrue($container->hasDefinition('twital.source_adapter.xhtml'), "XHTML Adapter");
+        $container->compile();
     }
 
     public function testSourceAdpters()
@@ -55,6 +55,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
             '/\.xml\.twital$/' => 'twital.source_adapter.xml',
             '/\.atom\.twital$/' => 'twital.source_adapter.xml'
         ), $adpaters);
+        $container->compile();
     }
 
     public function testLoadWithAssetic()
@@ -64,10 +65,13 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $container->setParameter('kernel.bundles', array(
             'AsseticBundle' => 'AsseticBundle'
         ));
+        $container->setParameter('kernel.debug', true);
+
         $loader->load($this->getFullConfig(), $container);
 
         $this->assertTrue($container->hasDefinition('assetic.twital_formula_loader'));
         $this->assertTrue($container->hasDefinition('assetic.twital_formula_loader.real'));
+        $container->compile();
     }
 
     public function testLoadWithJMS()
@@ -80,6 +84,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $loader->load($this->getFullConfig(), $container);
 
         $this->assertTrue($container->hasDefinition('twital.translation.extractor.jms'));
+        $container->compile();
     }
 
     public function testTwigFullCompat()
@@ -93,6 +98,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $calls = $def->getMethodCalls();
         $this->assertEquals("addExtension", $calls[0][0]);
         $this->assertEquals("twital.extension.full_twig_compatibility", (string)$calls[0][1][0]);
+        $container->compile();
     }
 
     protected function getFullConfig()
