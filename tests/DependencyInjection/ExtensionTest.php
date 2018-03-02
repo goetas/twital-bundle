@@ -28,6 +28,19 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $container->compile();
     }
 
+    public function testLoadWithCacheWarmer()
+    {
+        $loader = new GoetasTwitalExtension();
+        $container = new ContainerBuilder();
+        $container->setParameter('kernel.bundles', array());
+        $loader->load($this->getFullConfig(), $container);
+
+        $exists = class_exists('Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinderInterface');
+
+        $this->assertEquals($exists, $container->hasDefinition('twital.cache_warmer'));
+        $container->compile();
+    }
+
     public function testSourceAdpters()
     {
         $loader = new GoetasTwitalExtension();
