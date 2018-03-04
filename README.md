@@ -61,7 +61,7 @@ framework:
 goetas_twital:
     source_adapter:
         - { service: twital.source_adapter.xml, pattern: ['/\.xml\.twital$/', '/\.atom\.twital$/'] }
-        - { service: twital.source_adapter.html, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
+        - { service: twital.source_adapter.html5, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
         - { service: twital.source_adapter.xhtml, pattern: ['/\.xhtml\.twital$/'] }    
 ```
 Documentation

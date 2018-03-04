@@ -43,22 +43,64 @@ Configure
 
 In order to make it work, you have to enable the ``twital`` template engine inside your ``config.yml``.
 
+If you are using the symfony templating component (available in Symfony 2.x and 3.x):
+
 .. code-block:: yaml
 
     framework:
         templating:
             engines: ['twig', 'twital']
-            
-    # optional configurations
+
+
+
+If you are using SymfonyFlex_, the bundle is auto-configured.
+
+Optional Configurations
+***********************
+
+Here are some optional configurations for the bundle.
+
+Source Adapters
+---------------
+
+By default Twital parses ``*.html.twital``, ``*.xml.twital`` and ``*.xhtml.twital`` files. If you want you can
+customize the file types automatically parsed by Twital.
+
+.. code-block:: yaml
+
     goetas_twital:
-
-        full_twig_compatibility: true # default is false, to avoid in tag if conditions
-
         # extra file extension matching
         source_adapter:
             - { service: twital.source_adapter.xml, pattern: ['/\.xml\.twital$/', '/\.atom\.twital$/'] }
-            - { service: twital.source_adapter.html, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
-            - { service: twital.source_adapter.xhtml, pattern: ['/\.xhtml\.twital$/'] }    
+            - { service: twital.source_adapter.html5, pattern: ['/\.html\.twital$/', '/\.htm\.twital$/'] }
+            - { service: twital.source_adapter.xhtml, pattern: ['/\.xhtml\.twital$/'] }
+
+
+
+Twital comes with the following source adapters that you can use to parse your template files:
+
+- ``twital.source_adapter.html5``: used for most of the HTML-style templates
+- ``twital.source_adapter.xml``: used for strictly XML-compliant templates
+- ``twital.source_adapter.xhtml``: used for strictly XHTML-compliant templates (similar to XML but with some XHTML customizations)
+
+Full Twig Compatibility
+-----------------------
+The following template is a valid Twig template, but is not a valid HTML5 document (the ``div`` tag can contain only
+attributes). Because of it, the Twital source adapters will not be able to parse the template.
+
+.. code-block:: xml+jinja
+
+    <div {% if foo %} class="row" {% endif %}>
+        Hello World
+    </div>
+
+
+You can also enable a full Twig compatibility mode to allow this kind of templates.
+
+.. code-block:: yaml
+
+    goetas_twital:
+        full_twig_compatibility: true
 
 Integration
 ***********
