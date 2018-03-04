@@ -17,7 +17,7 @@
     "homepage" : "https://github.com/goetas/twital-bundle",
     "license" : "MIT",
     "require" : {
-        "goetas/twital" : "^1.0",
+        "goetas/twital" : "^1.1",
         "symfony/twig-bundle" : "^2.3|^3.0|^4.0",
         "php" : "^5.3.3|^7.0"
     },
