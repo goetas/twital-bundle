@@ -41,9 +41,9 @@ matrix:
 
 before_script:
   - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; else PHPUNIT_FLAGS=""; fi
-  - if [[ "$SYMFONY_VERSION" != "" ]]; then composer require symfony/framework-bundle:${SYMFONY_VERSION} --no-update; fi
-  - if [[ "$TWIG_VERSION" != "" ]]; then composer require twig/twig:${TWIG_VERSION} --no-update; fi
-  - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then composer require symfony/templating:${SYMFONY_TEMPLATING} --no-update; fi
+  - if [[ "$TWIG_VERSION" != "" ]];       then composer require twig/twig:${TWIG_VERSION} --no-update; fi
+  - if [[ "$SYMFONY_VERSION" != "" ]];    then composer require symfony/framework-bundle:${SYMFONY_VERSION} --dev --no-update; fi
+  - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then composer require symfony/templating:${SYMFONY_TEMPLATING} --dev --no-update; fi
   - composer install --prefer-dist
 
 script: vendor/bin/phpunit $PHPUNIT_FLAGS
