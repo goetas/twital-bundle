@@ -1,6 +1,7 @@
 <?php
 namespace Goetas\TwitalBundle;
 
+use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\AddExtensionsPass;
@@ -17,5 +18,6 @@ class GoetasTwitalBundle extends Bundle
     {
         $container->addCompilerPass(new AddExtensionsPass());
         $container->addCompilerPass(new TwigPass());
+        $container->addCompilerPass(new TemplatingPass());
     }
 }
