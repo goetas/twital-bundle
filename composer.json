@@ -1,7 +1,7 @@
 {
     "name" : "goetas/twital-bundle",
     "type": "symfony-bundle",
-    "description" : "Twital templating engine Symfony2 Bundle",
+    "description" : "Twital templating engine Symfony Bundle",
     "authors" : [{
             "name" : "Asmir Mustafic",
             "email" : "goetas@gmail.com"
@@ -40,7 +40,7 @@
     },
     "extra" : {
         "branch-alias" : {
-            "dev-master" : "1.2-dev"
+            "dev-master" : "1.3-dev"
         }
     }
 }
