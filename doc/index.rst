@@ -41,9 +41,10 @@ To enable the bundle in the kernel:
 Configure
 *********
 
-In order to make it work, you have to enable the ``twital`` template engine inside your ``config.yml``.
+If you are using SymfonyFlex_, the bundle is auto-configured and you can skip this step.
 
-If you are using the symfony templating component (available in Symfony 2.x and 3.x):
+If you are using the symfony templating component (available in Symfony 2.x and 3.x),
+you have to enable the ``twital`` template engine inside your ``config.yml``.
 
 .. code-block:: yaml
 
@@ -51,9 +52,6 @@ If you are using the symfony templating component (available in Symfony 2.x and 
         templating:
             engines: ['twig', 'twital']
 
-
-
-If you are using SymfonyFlex_, the bundle is auto-configured.
 
 Optional Configurations
 ***********************
