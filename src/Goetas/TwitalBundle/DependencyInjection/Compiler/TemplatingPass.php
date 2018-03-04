@@ -10,13 +10,13 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * @author Martin Hasoň <martin.hason@gmail.com>
  *
  */
-class TwigPass implements CompilerPassInterface
+class TemplatingPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $twitalLoader = $container->getDefinition('twital.loader');
-        $twitalLoader->replaceArgument(0, $container->findDefinition('twig.loader'));
-        $container->setDefinition('twig.loader', $twitalLoader);
+        if (!$container->hasDefinition('templating.engine.twig')) {
+            $container->removeDefinition('templating.engine.twital');
+        }
     }
 }
 

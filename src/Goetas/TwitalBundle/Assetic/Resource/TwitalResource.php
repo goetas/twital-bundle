@@ -1,4 +1,5 @@
 <?php
+
 namespace Goetas\TwitalBundle\Assetic\Resource;
 
 use Assetic\Factory\Resource\ResourceInterface;

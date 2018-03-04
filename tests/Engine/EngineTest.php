@@ -1,19 +1,24 @@
 <?php
 namespace Goetas\TwitalBundle\Tests\Engine;
 
-use Goetas\TwitalBundle\Assetic\TwitalFormulaLoader;
-use Goetas\Twital\Twital;
+
 use Goetas\Twital\TwitalLoader;
-use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Templating\TemplateReference;
 use Goetas\TwitalBundle\Engine\TwitalEngine;
-use Goetas\Twital\Template;
 use Goetas\Twital\SourceAdapter\XMLAdapter;
 use Symfony\Component\Templating\TemplateNameParser;
 
 class EngineTest extends \PHPUnit_Framework_TestCase
 {
+
+    public function setUp()
+    {
+        if (!interface_exists('Symfony\Component\Templating\EngineInterface')) {
+            $this->markTestSkipped();
+        }
+    }
+
     public function testExistsWithNonExistentTemplates()
     {
         $engine = $this->getTwital();

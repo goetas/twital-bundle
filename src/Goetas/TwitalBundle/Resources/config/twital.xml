@@ -17,19 +17,18 @@
     </parameters>
 
     <services>
-        <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="false">
+        <service id="templating.engine.twital" class="%templating.engine.twital.class%" public="true">
             <argument type="service" id="templating.engine.twig"/>
             <argument type="service" id="templating.name_parser"/>
         </service>
 
+        <service id="twital" class="%twital.class%" public="true"></service>
 
-        <service id="twital" class="%twital.class%"></service>
+        <service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%" public="true"></service>
+        <service id="twital.source_adapter.html5" class="%twital.source_adapter.html5.class%" public="true"></service>
+        <service id="twital.source_adapter.xhtml" class="%twital.source_adapter.xhtml.class%" public="true"></service>
 
-        <service id="twital.source_adapter.xml" class="%twital.source_adapter.xml.class%"></service>
-        <service id="twital.source_adapter.html5" class="%twital.source_adapter.html5.class%"></service>
-        <service id="twital.source_adapter.xhtml" class="%twital.source_adapter.xhtml.class%"></service>
-
-        <service id="twital.loader" class="%twital.loader.class%">
+        <service id="twital.loader" class="%twital.loader.class%" public="false">
             <argument></argument>
             <argument type="service" id="twital"/>
             <argument type="constant">FALSE</argument>
@@ -37,20 +36,20 @@
 
         <service id="twital.extension.full_twig_compatibility" class="Goetas\Twital\Extension\FullCompatibilityTwigExtension" public="false"/>
 
-        <service id="twital.translation.extractor" class="%twital.translation.extractor.class%">
+        <service id="twital.translation.extractor" class="%twital.translation.extractor.class%" public="false">
             <argument type="service" id="twig"/>
             <argument type="service" id="twital.loader"/>
             <tag name="translation.extractor" alias="twital"/>
         </service>
 
-        <service id="twital.translate.extension" class="%twital.translate.extension.class%">
+        <service id="twital.translate.extension" class="%twital.translate.extension.class%" public="false">
             <tag name="twital.extension"/>
         </service>
 
         <service id="twital.cache_warmer" class="%twital.cache_warmer.class%" public="false">
             <tag name="kernel.cache_warmer"/>
             <argument type="service" id="service_container"/>
-            <argument type="service" id="templating.finder"/>
+            <argument type="service" id="templating.finder" />
         </service>
 
     </services>

@@ -8,7 +8,7 @@
     </parameters>
 
     <services>
-        <service id="assetic.twital_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
+        <service id="assetic.twital_formula_loader" class="Assetic\Factory\Loader\CachedFormulaLoader" public="false">
             <tag name="assetic.formula_loader" alias="twital"/>
 
             <argument type="service" id="assetic.twital_formula_loader.real"/>

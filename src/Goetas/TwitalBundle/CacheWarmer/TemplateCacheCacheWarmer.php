@@ -2,10 +2,9 @@
 
 namespace Goetas\TwitalBundle\CacheWarmer;
 
-use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinderInterface;
-
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 
 class TemplateCacheCacheWarmer implements CacheWarmerInterface
 {
@@ -35,13 +34,7 @@ class TemplateCacheCacheWarmer implements CacheWarmerInterface
      */
     public function warmUp($cacheDir)
     {
-
-        $twitalLoader = $this->container->get('twital.loader');
         $twig = $this->container->get('twig');
-
-        // switch the loaders
-        $twitalLoader->setLoader($twig->getLoader());
-        $twig->setLoader($twitalLoader);
 
         foreach ($this->finder->findAllTemplates() as $template) {
 
