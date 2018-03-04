@@ -13,8 +13,6 @@ This enables you to use all Twig/Symfony functionalities with the Twital templat
 
 To learn more about Twital, you can read the [dedicated documentation](http://twital.readthedocs.org/).
 
-
-
 Install
 -------
 
@@ -24,8 +22,13 @@ The recommended way to install TwitalBundle is using [Composer](https://getcompo
 composer require 'goetas/twital-bundle'
 ```
 
-Enable the bundle
+If you are using [Symfony Flex](https://github.com/symfony/flex), the bundle will be automatically enabled
+and configured, otherwise follow the next steps.
+
+Enable the bundle 
 -----------------
+
+
 
 To enable the bundle in the kernel:
 

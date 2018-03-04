@@ -16,6 +16,8 @@ The recommended way to install TwitalBundle is via Composer_:
 
     composer require 'goetas/twital-bundle'
 
+If you are using SymfonyFlex_, the bundle will be automatically enabled
+and configured, otherwise follow the next steps.
 
 Enable the bundle
 *****************
@@ -104,3 +106,4 @@ Pull Requests are welcome.
 .. _Twital: https://github.com/goetas/twital
 .. _Symfony: http://symfony.com
 .. _Composer: https://getcomposer.org/
+.. _SymfonyFlex: https://github.com/symfony/flex
