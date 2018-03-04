@@ -1,4 +1,5 @@
 <?php
+
 namespace Goetas\TwitalBundle\Extension;
 
 use Goetas\Twital\Extension\AbstractExtension;

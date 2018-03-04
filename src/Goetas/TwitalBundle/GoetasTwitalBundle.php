@@ -1,11 +1,12 @@
 <?php
+
 namespace Goetas\TwitalBundle;
 
-use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\AddExtensionsPass;
+use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\TwigPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  *

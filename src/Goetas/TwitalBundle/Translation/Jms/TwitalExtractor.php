@@ -1,9 +1,10 @@
 <?php
+
 namespace Goetas\TwitalBundle\Translation\Jms;
 
+use Goetas\Twital\TwitalLoader;
 use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor;
-use Goetas\Twital\TwitalLoader;
 use JMS\TranslationBundle\Translation\FileSourceFactory;
 use Twig\Source;
 
@@ -27,9 +28,9 @@ class TwitalExtractor extends TwigFileExtractor
      */
     private $twig;
 
-	public function __construct(\Twig_Environment $twig, FileSourceFactory $fileSourceFactory, TwitalLoader $twitalLoader)
-	{
-		parent::__construct($twig, $fileSourceFactory);
+    public function __construct(\Twig_Environment $twig, FileSourceFactory $fileSourceFactory, TwitalLoader $twitalLoader)
+    {
+        parent::__construct($twig, $fileSourceFactory);
         $this->twig = $twig;
         $this->twitalLoader = $twitalLoader;
     }
@@ -40,7 +41,7 @@ class TwitalExtractor extends TwigFileExtractor
 
             $source = $this->twitalLoader->getTwital()->compile($adapter, file_get_contents((string)$file));
 
-            $ast = $this->twig->parse($this->twig->tokenize(new Source($source, (string) $file)));
+            $ast = $this->twig->parse($this->twig->tokenize(new Source($source, (string)$file)));
 
             $this->visitTwigFile($file, $catalogue, $ast);
         }

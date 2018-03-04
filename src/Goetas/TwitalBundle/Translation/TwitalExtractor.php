@@ -1,10 +1,11 @@
 <?php
+
 namespace Goetas\TwitalBundle\Translation;
 
-use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Goetas\Twital\TwitalLoader;
-use Symfony\Component\Translation\MessageCatalogue;
+use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Translation\MessageCatalogue;
 
 /**
  *

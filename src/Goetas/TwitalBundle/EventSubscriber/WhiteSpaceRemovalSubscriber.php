@@ -1,9 +1,10 @@
 <?php
+
 namespace Goetas\TwitalBundle\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Goetas\Twital\EventDispatcher\TemplateEvent;
 use Goetas\Twital\Twital;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  *

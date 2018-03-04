@@ -1,4 +1,5 @@
 <?php
+
 namespace Goetas\TwitalBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

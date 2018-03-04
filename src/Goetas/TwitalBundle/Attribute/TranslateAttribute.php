@@ -1,9 +1,10 @@
 <?php
+
 namespace Goetas\TwitalBundle\Attribute;
 
+use DOMAttr;
 use Goetas\Twital\Attribute;
 use Goetas\Twital\Compiler;
-use DOMAttr;
 use Goetas\Twital\Helper\ParserHelper;
 
 /**

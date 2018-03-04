@@ -1,9 +1,9 @@
 <?php
+
 namespace Goetas\TwitalBundle\Assetic;
 
-use Assetic\Factory\Resource\ResourceInterface;
 use Assetic\Extension\Twig\TwigFormulaLoader;
-use Goetas\Twital\Twital;
+use Assetic\Factory\Resource\ResourceInterface;
 use Goetas\Twital\TwitalLoader;
 use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
 
