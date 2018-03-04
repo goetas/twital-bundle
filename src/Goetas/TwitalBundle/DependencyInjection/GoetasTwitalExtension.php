@@ -53,7 +53,8 @@ class GoetasTwitalExtension extends Extension
             $container->removeDefinition('twital.cache_warmer');
         }
 
-        if (!class_exists('Symfony\Bundle\TwigBundle\TwigEngine')) {
+        if (!interface_exists('Symfony\Component\Templating\EngineInterface')
+            || !class_exists('Symfony\Bundle\TwigBundle\TwigEngine')) {
             $container->removeDefinition('templating.engine.twital');
         }
     }
