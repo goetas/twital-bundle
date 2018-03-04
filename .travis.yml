@@ -41,7 +41,7 @@ matrix:
 
 before_script:
   - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; else PHPUNIT_FLAGS=""; fi
-  - if [[ "$TWIG_VERSION" != "" ]];       then composer require twig/twig:${TWIG_VERSION} --no-update; fi
+  - if [[ "$TWIG_VERSION" != "" ]]; then composer require twig/twig:${TWIG_VERSION} --no-update; fi
 
 ## workaround for https://github.com/composer/composer/issues/7147
   - composer remove symfony/twig-bundle --no-update
