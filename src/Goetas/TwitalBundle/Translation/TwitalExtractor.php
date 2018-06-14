@@ -30,7 +30,7 @@ class TwitalExtractor extends TwigExtractor
     {
         // load any existing translation files
         $finder = new Finder();
-        $files = $finder->files()->name('*.twital')->in($directory);
+        $files = $finder->files()->in($directory);
         foreach ($files as $file) {
             if ($adapter = $this->twital->getSourceAdapter($file->getPathname())) {
                 $source = $this->twital->getTwital()->compile($adapter, file_get_contents($file->getPathname()));
