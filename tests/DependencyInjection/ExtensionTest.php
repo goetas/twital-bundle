@@ -2,10 +2,11 @@
 
 namespace Goetas\TwitalBundle\Tests\DependencyInjection;
 
-use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
 use Goetas\TwitalBundle\DependencyInjection\GoetasTwitalExtension;
+use Goetas\TwitalBundle\GoetasTwitalBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -89,12 +90,32 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadWithJMS()
     {
+        if (!class_exists('JMS\TranslationBundle\JMSTranslationBundle')) {
+            $this->markTestSkipped();
+        }
+
         $container = $this->getContainer($this->getFullConfig(), array(
             'JMSTranslationBundle' => 'JMSTranslationBundle'
-        ));
+        ), function (ContainerBuilder $containerBuilder) {
 
-        $this->assertTrue($container->hasDefinition('twital.translation.extractor.jms'));
+            $d = new Definition('JMS\TranslationBundle\Translation\FileSourceFactory', array(''));
+            $containerBuilder->setDefinition('FileSourceFactory', $d);
+
+            $d = new Definition(
+                'JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor',
+                array(
+                    new Reference('twig'),
+                    new Reference('FileSourceFactory'),
+                )
+            );
+            $d->setPublic(true);
+
+            $containerBuilder->setDefinition('jms_translation.extractor.file.twig_extractor', $d);
+        });
         $container->compile();
+
+        $extractor = $container->get('jms_translation.extractor.file.twig_extractor');
+        $this->assertInstanceOf('Goetas\TwitalBundle\Translation\Jms\TwitalExtractor', $extractor);
     }
 
     public function testTwigFullCompat()
@@ -114,7 +135,12 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $container = new ContainerBuilder();
         $container->setParameter('kernel.bundles', $bundles);
         $container->setParameter('kernel.debug', true);
-        $container->addCompilerPass(new TemplatingPass());
+
+        $bundle = new GoetasTwitalBundle();
+        $bundle->build($container);
+
+        $container->setDefinition('twig.loader', new Definition('Twig_Loader_Array'));
+        $container->setDefinition('twig', new Definition('Twig_Environment', array(new Reference('twig.loader'))));
 
         if (is_callable($configurator)) {
             call_user_func($configurator, $container);

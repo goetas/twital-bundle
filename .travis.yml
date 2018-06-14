@@ -13,7 +13,7 @@ matrix:
     include:
         - php: 5.3
           dist: precise
-          env: SYMFONY_VERSION="~2.3.0" TWIG_VERSION="^1.10"
+          env: SYMFONY_VERSION="~2.3.0" TWIG_VERSION="^1.10" COMPOSER_MEMORY_LIMIT=-1
 
         - php: 5.6
           env: SYMFONY_VERSION="~2.8.0" TWIG_VERSION="^1.10"
@@ -42,6 +42,7 @@ matrix:
 before_script:
   - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; else PHPUNIT_FLAGS=""; fi
   - if [[ "$TWIG_VERSION" != "" ]]; then composer require twig/twig:${TWIG_VERSION} --no-update; fi
+  - if [[ "$SYMFONY_VERSION" == "~4.0" ]]; then composer remove jms/translation-bundle --dev --no-update; fi
 
 ## workaround for https://github.com/composer/composer/issues/7147
   - composer remove symfony/twig-bundle --no-update
