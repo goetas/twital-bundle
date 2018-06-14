@@ -90,6 +90,10 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadWithJMS()
     {
+        if (!class_exists('JMS\TranslationBundle\JMSTranslationBundle')) {
+            $this->markTestSkipped();
+        }
+
         $container = $this->getContainer($this->getFullConfig(), array(
             'JMSTranslationBundle' => 'JMSTranslationBundle'
         ), function (ContainerBuilder $containerBuilder) {
