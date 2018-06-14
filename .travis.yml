@@ -13,7 +13,7 @@ matrix:
     include:
         - php: 5.3
           dist: precise
-          env: SYMFONY_VERSION="~2.3.0" TWIG_VERSION="^1.10"
+          env: SYMFONY_VERSION="~2.3.0" TWIG_VERSION="^1.10" COMPOSER_MEMORY_LIMIT=-1
 
         - php: 5.6
           env: SYMFONY_VERSION="~2.8.0" TWIG_VERSION="^1.10"
