@@ -3,6 +3,7 @@
 namespace Goetas\TwitalBundle;
 
 use Goetas\TwitalBundle\DependencyInjection\Compiler\AddExtensionsPass;
+use Goetas\TwitalBundle\DependencyInjection\Compiler\JMSTranslationBundlePass;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\TwigPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,5 +21,6 @@ class GoetasTwitalBundle extends Bundle
         $container->addCompilerPass(new AddExtensionsPass());
         $container->addCompilerPass(new TwigPass());
         $container->addCompilerPass(new TemplatingPass());
+        $container->addCompilerPass(new JMSTranslationBundlePass());
     }
 }

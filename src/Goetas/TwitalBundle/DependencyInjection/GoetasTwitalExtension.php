@@ -40,10 +40,6 @@ class GoetasTwitalExtension extends Extension
             $loader->load('assetic.xml');
         }
 
-        if (isset($bundles["JMSTranslationBundle"])) {
-            $loader->load('jms-translation-bundle.xml');
-        }
-
         if (!empty($config["full_twig_compatibility"])) {
             $twitalDefinitioin = $container->getDefinition("twital");
             $twitalDefinitioin->addMethodCall('addExtension', array(new Reference('twital.extension.full_twig_compatibility')));

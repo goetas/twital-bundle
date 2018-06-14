@@ -2,6 +2,7 @@
 
 namespace Goetas\TwitalBundle\Tests\DependencyInjection;
 
+use Goetas\TwitalBundle\DependencyInjection\Compiler\JMSTranslationBundlePass;
 use Goetas\TwitalBundle\DependencyInjection\Compiler\TemplatingPass;
 use Goetas\TwitalBundle\DependencyInjection\GoetasTwitalExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -91,10 +92,18 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer($this->getFullConfig(), array(
             'JMSTranslationBundle' => 'JMSTranslationBundle'
-        ));
+        ), function (ContainerBuilder $containerBuilder) {
 
-        $this->assertTrue($container->hasDefinition('twital.translation.extractor.jms'));
+            $d = new Definition('JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor');
+            $d->setPublic(true);
+            $containerBuilder->setDefinition('jms_translation.extractor.file.twig_extractor', $d);
+
+            $containerBuilder->setDefinition('twig', new Definition('Twig_Environment'));
+        });
         $container->compile();
+
+        $def = $container->getDefinition('jms_translation.extractor.file.twig_extractor');
+        $this->assertSame('Goetas\TwitalBundle\Translation\Jms\TwitalExtractor', $def->getClass());
     }
 
     public function testTwigFullCompat()
@@ -115,7 +124,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $container->setParameter('kernel.bundles', $bundles);
         $container->setParameter('kernel.debug', true);
         $container->addCompilerPass(new TemplatingPass());
-
+        $container->addCompilerPass(new JMSTranslationBundlePass());
         if (is_callable($configurator)) {
             call_user_func($configurator, $container);
         }
