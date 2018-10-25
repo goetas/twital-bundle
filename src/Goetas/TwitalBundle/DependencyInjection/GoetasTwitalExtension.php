@@ -27,13 +27,15 @@ class GoetasTwitalExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('twital.xml');
 
-
+        $regex = array();
         $loaderDefinition = $container->getDefinition("twital.loader");
         foreach ($config["source_adapters"] as $id => $regs) {
             foreach ($regs["pattern"] as $reg) {
+                $regex[] = $reg;
                 $loaderDefinition->addMethodCall('addSourceAdapter', array($reg, new Reference($id)));
             }
         }
+        $container->setParameter("twital.loader_regexs", array_unique($regex));
 
         $bundles = $container->getParameter("kernel.bundles");
         if (isset($bundles["AsseticBundle"])) {
