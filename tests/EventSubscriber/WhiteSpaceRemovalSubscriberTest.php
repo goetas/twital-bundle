@@ -5,8 +5,9 @@ use Goetas\Twital\EventDispatcher\TemplateEvent;
 use Goetas\Twital\Twital;
 use Goetas\Twital\Template;
 use Goetas\TwitalBundle\EventSubscriber\WhiteSpaceRemovalSubscriber;
+use Goetas\TwitalBundle\Tests\TestCase;
 
-class WhiteSpaceRemovalSubscriberTest extends \PHPUnit_Framework_TestCase
+class WhiteSpaceRemovalSubscriberTest extends TestCase
 {
     private $twital;
 
