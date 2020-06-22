@@ -17,9 +17,10 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $builder = new TreeBuilder();
+        $builder = new TreeBuilder('twital');
+        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $builder->getRootNode() : $builder->root('twital');
 
-        $builder->root('twital')
+        $rootNode
             ->children()
                 ->booleanNode('full_twig_compatibility')->defaultFalse()->end()
             ->end()

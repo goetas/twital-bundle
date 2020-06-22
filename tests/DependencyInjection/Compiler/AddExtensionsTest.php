@@ -2,6 +2,7 @@
 namespace Goetas\TwitalBundle\Tests\DependencyInjection\Compiler;
 
 use Goetas\TwitalBundle\DependencyInjection\Compiler\AddExtensionsPass;
+use Goetas\TwitalBundle\Tests\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -9,7 +10,7 @@ use Symfony\Component\DependencyInjection\Definition;
  *
  * @author Asmir Mustafic <goetas@gmail.com>
  */
-class AddExtensionsTest extends \PHPUnit_Framework_TestCase
+class AddExtensionsTest extends TestCase
 {
 
     public function testAdd()

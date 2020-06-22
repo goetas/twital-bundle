@@ -5,6 +5,7 @@ namespace Goetas\TwitalBundle\CacheWarmer;
 use Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
+use Twig\Error\Error;
 
 class TemplateCacheCacheWarmer implements CacheWarmerInterface
 {
@@ -44,7 +45,7 @@ class TemplateCacheCacheWarmer implements CacheWarmerInterface
 
             try {
                 $twig->loadTemplate($template);
-            } catch (\Twig_Error $e) {
+            } catch (Error $e) {
                 // problem during compilation, give up
             }
         }

@@ -3,18 +3,22 @@ namespace Goetas\TwitalBundle\Tests\Engine;
 
 
 use Goetas\Twital\TwitalLoader;
+use Goetas\TwitalBundle\Tests\TestCase;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateReference;
 use Goetas\TwitalBundle\Engine\TwitalEngine;
 use Goetas\Twital\SourceAdapter\XMLAdapter;
 use Symfony\Component\Templating\TemplateNameParser;
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
 
-class EngineTest extends \PHPUnit_Framework_TestCase
+class EngineTest extends TestCase
 {
 
     public function setUp()
     {
-        if (!interface_exists('Symfony\Component\Templating\EngineInterface')) {
+        if (!interface_exists(EngineInterface::class) || !class_exists(TwigEngine::class)) {
             $this->markTestSkipped();
         }
     }
@@ -56,16 +60,16 @@ class EngineTest extends \PHPUnit_Framework_TestCase
 
     protected function getTwital()
     {
-        $loader = new \Twig_Loader_Array(array(
+        $loader = new ArrayLoader(array(
             'index.html.twital' => '<div/>'
         ));
 
         $twitalLoader = new TwitalLoader($loader);
         $twitalLoader->addSourceAdapter('/.*\.twital/', new XMLAdapter());
 
-        $twig = new \Twig_Environment($loader);
+        $twig = new Environment($loader);
         $parser = new TemplateNameParser();
-        $locator = $this->getMock('Symfony\Component\Config\FileLocatorInterface');
+        $locator = $this->createMock('Symfony\Component\Config\FileLocatorInterface');
 
         $twigEngine = new TwigEngine($twig, $parser, $locator);
 

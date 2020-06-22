@@ -6,6 +6,8 @@ use Goetas\Twital\TwitalLoader;
 use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\Extractor\File\TwigFileExtractor;
 use JMS\TranslationBundle\Translation\Extractor\FileVisitorInterface;
+use Twig\Environment;
+use Twig\Node\Node;
 use Twig\Source;
 
 /**
@@ -22,16 +24,16 @@ class TwitalExtractor implements FileVisitorInterface
     private $twigFileExtractor;
     /**
      *
-     * @var \Goetas\Twital\TwitalLoader
+     * @var TwitalLoader
      */
     private $twitalLoader;
     /**
      *
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $twig;
 
-    public function __construct(\Twig_Environment $twig, TwitalLoader $twitalLoader, TwigFileExtractor $twigFileExtractor)
+    public function __construct(Environment $twig, TwitalLoader $twitalLoader, TwigFileExtractor $twigFileExtractor)
     {
         $this->twig = $twig;
         $this->twitalLoader = $twitalLoader;
@@ -42,7 +44,7 @@ class TwitalExtractor implements FileVisitorInterface
     {
     }
 
-    public function visitTwigFile(\SplFileInfo $file, MessageCatalogue $catalogue, \Twig_Node $ast)
+    public function visitTwigFile(\SplFileInfo $file, MessageCatalogue $catalogue, Node $ast)
     {
         if ($adapter = $this->twitalLoader->getSourceAdapter((string)$file)) {
 

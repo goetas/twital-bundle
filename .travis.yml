@@ -11,50 +11,88 @@ cache:
 
 matrix:
     include:
-        - php: 5.3
-          dist: precise
-          env: SYMFONY_VERSION="~2.3.0" TWIG_VERSION="^1.10" COMPOSER_MEMORY_LIMIT=-1
+        - php: 5.5
+          dist: trusty
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
 
         - php: 5.6
-          env: SYMFONY_VERSION="~2.8.0" TWIG_VERSION="^1.10"
-        - php: 7
-          env: SYMFONY_VERSION="~2.8.0" TWIG_VERSION="^1.10"
-        - php: 7
-          env: SYMFONY_VERSION="~2.8.0" TWIG_VERSION="^2.0"
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
 
-        - php: 5.6
-          env: SYMFONY_VERSION="~3.4.0" TWIG_VERSION="^1.10"
-        - php: 7
-          env: SYMFONY_VERSION="~3.4.0" TWIG_VERSION="^2.0"
-        - php: 7
-          env: SYMFONY_VERSION="~3.4.0" TWIG_VERSION="^1.10"
-
-        - php: 7
-          env: SYMFONY_VERSION="~3.4.0" SYMFONY_TEMPLATING="~3.4.0"
+        - php: 7.0
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
+        - php: 7.0
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^2.4"
 
         - php: 7.1
-          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^2.0"
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
         - php: 7.1
-          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^1.10"
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^2.4"
+        - php: 7.1
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^1.38"
+        - php: 7.1
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^2.4"
+
+        - php: 7.2
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
+        - php: 7.2
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^2.4"
+        - php: 7.2
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^1.38"
+        - php: 7.2
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^2.4"
+        - php: 7.2
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^3.0"
+        - php: 7.2
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^2.4"
+        - php: 7.2
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^3.0"
+
+        - php: 7.3
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
+        - php: 7.3
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^2.4"
+        - php: 7.3
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^1.38"
+        - php: 7.3
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^2.4"
+        - php: 7.3
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^3.0"
+        - php: 7.3
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^2.4"
+        - php: 7.3
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^3.0"
+
+        - php: 7.4
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^1.38"
+        - php: 7.4
+          env: SYMFONY_VERSION="~3.0" TWIG_VERSION="^2.4" PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
+        - php: 7.4
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^1.38"
+        - php: 7.4
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^2.4"
+        - php: 7.4
+          env: SYMFONY_VERSION="~4.0" TWIG_VERSION="^3.0"
+        - php: 7.4
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^2.4"
+        - php: 7.4
+          env: SYMFONY_VERSION="~5.0" TWIG_VERSION="^3.0" PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
 
     fast_finish: true
 
 before_script:
-  - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then PHPUNIT_FLAGS="--coverage-clover=coverage.clover"; else PHPUNIT_FLAGS=""; fi
-  - if [[ "$TWIG_VERSION" != "" ]]; then composer require twig/twig:${TWIG_VERSION} --no-update; fi
-  - if [[ "$SYMFONY_VERSION" == "~4.0" ]]; then composer remove jms/translation-bundle --dev --no-update; fi
+  - if [ "$TWIG_VERSION" != "" ]; then composer require twig/twig:${TWIG_VERSION} --no-update; fi
 
 ## workaround for https://github.com/composer/composer/issues/7147
   - composer remove symfony/twig-bundle --no-update
   - composer remove symfony/framework-bundle --dev --no-update
   - composer require symfony/framework-bundle:${SYMFONY_VERSION} --dev --no-update
   - composer require symfony/twig-bundle:${SYMFONY_VERSION} --no-update
+  - composer require symfony/templating:${SYMFONY_VERSION} --dev --no-update
 
-  - if [[ "$SYMFONY_TEMPLATING" != "" ]]; then composer require symfony/templating:${SYMFONY_TEMPLATING} --dev --no-update; fi
   - composer install --prefer-dist
 
 script: vendor/bin/phpunit $PHPUNIT_FLAGS
 
 after_script:
-  - if [[ "$PHPUNIT_FLAGS" != "" ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [[ "$PHPUNIT_FLAGS" != "" ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - if [ "$PHPUNIT_FLAGS" != "" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ "$PHPUNIT_FLAGS" != "" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi

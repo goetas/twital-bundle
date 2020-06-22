@@ -6,6 +6,7 @@ use Assetic\Extension\Twig\TwigFormulaLoader;
 use Assetic\Factory\Resource\ResourceInterface;
 use Goetas\Twital\TwitalLoader;
 use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
+use Twig\Environment;
 
 /**
  *
@@ -17,7 +18,7 @@ class TwitalFormulaLoader extends TwigFormulaLoader
 
     private $twital;
 
-    public function __construct(TwitalLoader $twital, \Twig_Environment $twig)
+    public function __construct(TwitalLoader $twital, Environment $twig)
     {
         $this->twital = $twital;
         parent::__construct($twig);

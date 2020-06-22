@@ -14,7 +14,7 @@ class TemplateResourcesPass implements CompilerPassInterface
             return;
         }
 
-        foreach ($container->getParameter("twital.loader_regexs") as $regex) {
+        foreach ($container->getParameter('twital.loader_regexs') as $regex) {
             $this->setAppDirectoryResources($container, $regex);
         }
     }
