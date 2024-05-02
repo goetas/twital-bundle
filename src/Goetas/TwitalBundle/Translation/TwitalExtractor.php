@@ -6,6 +6,7 @@ use Goetas\Twital\TwitalLoader;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\MessageCatalogue;
+use Twig\Environment;
 
 /**
  *
@@ -17,7 +18,7 @@ class TwitalExtractor extends TwigExtractor
 
     protected $twital;
 
-    public function __construct(\Twig_Environment $twig, TwitalLoader $twital)
+    public function __construct(Environment $twig, TwitalLoader $twital)
     {
         parent::__construct($twig);
         $this->twital = $twital;

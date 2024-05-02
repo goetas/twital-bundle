@@ -20,8 +20,8 @@ class AddExtensionsPass implements CompilerPassInterface
             return;
         }
 
-        $twitalDefinition = $container->getDefinition("twital");
-        $extensionsIds = $container->findTaggedServiceIds("twital.extension");
+        $twitalDefinition = $container->getDefinition('twital');
+        $extensionsIds = $container->findTaggedServiceIds('twital.extension');
         foreach ($extensionsIds as $extensionId => $params) {
             $twitalDefinition->addMethodCall('addExtension', array(
                 new Reference($extensionId)

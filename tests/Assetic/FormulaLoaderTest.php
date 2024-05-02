@@ -1,31 +1,35 @@
 <?php
 namespace Goetas\TwitalBundle\Tests\Assetic;
 
-use Goetas\TwitalBundle\Assetic\TwitalFormulaLoader;
-use Goetas\Twital\Twital;
+use Assetic\Factory\Resource\ResourceInterface;
 use Goetas\Twital\TwitalLoader;
-use Goetas\TwitalBundle\Assetic\Resource\TwitalResource;
+use Goetas\TwitalBundle\Assetic\TwitalFormulaLoader;
+use Goetas\TwitalBundle\Tests\TestCase;
+use Twig\Environment;
 
-class TwigFormulaLoaderTest extends \PHPUnit_Framework_TestCase
+class TwigFormulaLoaderTest extends TestCase
 {
-
     private $twig;
 
     private $twitalLoader;
 
     protected function setUp()
     {
+        if (!class_exists('Assetic\Extension\Twig\TwigFormulaLoader') || !class_exists(Environment::class)) {
+            $this->markTestSkipped();
+        }
+
         $this->twitalLoader = new TwitalLoader();
-        $this->twig = new \Twig_Environment($this->twitalLoader);
+        $this->twig = new Environment($this->twitalLoader);
     }
 
     public function testMixture()
     {
-        $twitalLoader = $this->getMock('Goetas\Twital\TwitalLoader');
+        $twitalLoader = $this->createMock(TwitalLoader::class);
 
         $loader = new TwitalFormulaLoader($twitalLoader, $this->twig);
 
-        $resource = $this->getMock('Assetic\\Factory\\Resource\\ResourceInterface');
+        $resource = $this->createMock(ResourceInterface::class);
         /*
         $resource->expects($this->once())
             ->method('__toString')
