@@ -13,7 +13,7 @@ class TwigFormulaLoaderTest extends TestCase
 
     private $twitalLoader;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!class_exists('Assetic\Extension\Twig\TwigFormulaLoader') || !class_exists(Environment::class)) {
             $this->markTestSkipped();
@@ -25,6 +25,10 @@ class TwigFormulaLoaderTest extends TestCase
 
     public function testMixture()
     {
+        if (!class_exists('\Twig_Environment')) {
+            $this->markTestSkipped('Assetic works only on old twig versions');
+        }
+
         $twitalLoader = $this->createMock(TwitalLoader::class);
 
         $loader = new TwitalFormulaLoader($twitalLoader, $this->twig);

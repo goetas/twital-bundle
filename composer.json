@@ -17,8 +17,8 @@
     "homepage" : "https://github.com/goetas/twital-bundle",
     "license" : "MIT",
     "require" : {
-        "php" : "^5.5.9|^7.0",
-        "goetas/twital" : "^1.1@dev",
+        "php" : "^5.5.9|^7.0|^8.0",
+        "goetas/twital" : "^1.1",
         "symfony/twig-bundle" : "^3.0|^4.0|^5.0",
         "symfony/yaml" : "^3.0|^4.0|^5.0",
         "twig/twig" : "^1.38|^2.4|^3.0"
@@ -28,7 +28,7 @@
         "symfony/templating": "^3.0|^4.0|^5.0",
         "symfony/var-dumper": "^3.0|^4.0|^5.0",
         "jms/translation-bundle": "^1.0",
-        "phpunit/phpunit" : "^4.8.28|^5.6.3|^6.0|^7.0",
+        "phpunit/phpunit" : "^4.8.28|^5.6.3|^6.0|^7.0|^8.0",
         "kriswallsmith/assetic" : "^1.0"
     },
     "autoload" : {

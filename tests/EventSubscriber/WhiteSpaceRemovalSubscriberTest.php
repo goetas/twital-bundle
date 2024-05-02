@@ -11,7 +11,7 @@ class WhiteSpaceRemovalSubscriberTest extends TestCase
 {
     private $twital;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->twital = new Twital();
     }

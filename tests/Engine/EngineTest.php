@@ -16,7 +16,7 @@ use Twig\Loader\ArrayLoader;
 class EngineTest extends TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!interface_exists(EngineInterface::class) || !class_exists(TwigEngine::class)) {
             $this->markTestSkipped();
